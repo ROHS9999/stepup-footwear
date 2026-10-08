@@ -25,7 +25,7 @@ export const AboutPage = () => {
         </div>
         
         <h1 className="font-heading text-4xl sm:text-6xl font-bold tracking-tight text-[#111111] uppercase leading-tight">
-          BUILT FOR CAMPUS LIFE.
+          BUILTT FOR CAMPUS LIFE.
         </h1>
 
         <p className="text-sm sm:text-base text-[#666666] leading-relaxed max-w-2xl mx-auto">
