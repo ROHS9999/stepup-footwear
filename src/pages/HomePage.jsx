@@ -5,6 +5,12 @@ import { ArrowRight, ArrowLeft, Sparkles, Check, ChevronRight } from 'lucide-rea
 
 export const HomePage = () => {
   const { navigate, allProducts, categories, blogs } = useApp();
+
+  const handleInternalLink = (event, path) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    navigate(path);
+  };
   const trendingScrollRef = useRef(null);
 
   // Products for sections
@@ -46,20 +52,22 @@ export const HomePage = () => {
 
               {/* CTAs with micro-interactions */}
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 animate-hero-cta">
-                <button
-                  onClick={() => navigate('/shop')}
+                <a
+                  href="/shop"
+                  onClick={(event) => handleInternalLink(event, '/shop')}
                   className="px-8 py-4 bg-[#111111] hover:bg-[#222222] text-[#F7F5F0] text-xs font-semibold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 cursor-pointer group"
                 >
                   <span>Shop Collection</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
 
-                <button
-                  onClick={() => navigate('/shop?category=everyday-sneakers')}
+                <a
+                  href="/shop?category=everyday-sneakers"
+                  onClick={(event) => handleInternalLink(event, '/shop?category=everyday-sneakers')}
                   className="px-8 py-4 bg-transparent hover:bg-[#EFECE5] text-[#111111] border border-[#111111] text-xs font-semibold uppercase tracking-widest transition-colors flex items-center justify-center cursor-pointer"
                 >
                   Explore Sneakers
-                </button>
+                </a>
               </div>
 
               {/* Verified Campus Social Proof */}
@@ -105,12 +113,13 @@ export const HomePage = () => {
                     <span className="font-heading text-sm font-semibold text-[#111111] block">
                       ₹2,299
                     </span>
-                    <button
-                      onClick={() => navigate('/shop')}
+                    <a
+                      href="/shop"
+                      onClick={(event) => handleInternalLink(event, '/shop')}
                       className="text-[11px] text-[#666666] hover:text-[#111111] underline transition-colors cursor-pointer"
                     >
                       View Shoe →
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -145,12 +154,13 @@ export const HomePage = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <button
-            onClick={() => navigate('/shop')}
-            className="px-8 py-3.5 bg-transparent hover:bg-[#111111] text-[#111111] hover:text-[#F7F5F0] border border-[#111111] text-xs font-semibold uppercase tracking-widest transition-colors cursor-pointer"
+          <a
+            href="/shop"
+            onClick={(event) => handleInternalLink(event, '/shop')}
+            className="px-8 py-3.5 bg-transparent hover:bg-[#111111] text-[#111111] hover:text-[#F7F5F0] border border-[#111111] text-xs font-semibold uppercase tracking-widest transition-colors inline-block"
           >
             View All Footwear ({allProducts.length})
-          </button>
+          </a>
         </div>
       </section>
 
@@ -168,10 +178,11 @@ export const HomePage = () => {
         {/* 3 Large Visual Editorial Categories */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {categories.map((cat) => (
-            <div
+            <a
               key={cat.id}
-              onClick={() => navigate(cat.path)}
-              className="group relative aspect-3/4 sm:aspect-4/5 lg:aspect-3/4 bg-[#111111] overflow-hidden cursor-pointer border border-[#E8E2D8]"
+              href={cat.path}
+              onClick={(event) => handleInternalLink(event, cat.path)}
+              className="group relative block aspect-3/4 sm:aspect-4/5 lg:aspect-3/4 bg-[#111111] overflow-hidden cursor-pointer border border-[#E8E2D8]"
             >
               <img
                 src={cat.image}
@@ -200,7 +211,7 @@ export const HomePage = () => {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>
@@ -260,23 +271,26 @@ export const HomePage = () => {
               YOUR CAMPUS STYLE GUIDE
             </h2>
           </div>
-          <button
-            onClick={() => navigate('/journal')}
-            className="text-xs font-semibold uppercase tracking-wider text-[#111111] hover:text-[#A52A2A] transition-colors flex items-center gap-1 cursor-pointer"
+          <a
+            href="/journal"
+            onClick={(event) => handleInternalLink(event, '/journal')}
+            className="text-xs font-semibold uppercase tracking-wider text-[#111111] hover:text-[#A52A2A] transition-colors flex items-center gap-1"
           >
             <span>View All Guides</span>
             <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          </a>
         </div>
 
         {/* 3 Editorial Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((article) => (
-            <article
+            <a
               key={article.id}
-              onClick={() => navigate(`/journal/${article.slug}`)}
-              className="group flex flex-col bg-white border border-[#E8E2D8] hover:border-[#111111] transition-colors cursor-pointer"
+              href={`/journal/${article.slug}`}
+              onClick={(event) => handleInternalLink(event, `/journal/${article.slug}`)}
+              className="group block bg-white border border-[#E8E2D8] hover:border-[#111111] transition-colors"
             >
+              <article className="flex flex-col h-full">
               {/* Image */}
               <div className="aspect-16/10 bg-[#EFECE5] overflow-hidden relative">
                 <img
@@ -309,7 +323,8 @@ export const HomePage = () => {
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </article>
+              </article>
+            </a>
           ))}
         </div>
       </section>
@@ -402,13 +417,14 @@ export const HomePage = () => {
           </p>
 
           <div className="pt-2">
-            <button
-              onClick={() => navigate('/shop')}
-              className="px-10 py-4 bg-[#F7F5F0] hover:bg-[#FAF9F6] text-[#111111] text-xs font-semibold uppercase tracking-widest transition-colors inline-flex items-center gap-2 cursor-pointer"
+            <a
+              href="/shop"
+              onClick={(event) => handleInternalLink(event, '/shop')}
+              className="px-10 py-4 bg-[#F7F5F0] hover:bg-[#FAF9F6] text-[#111111] text-xs font-semibold uppercase tracking-widest transition-colors inline-flex items-center gap-2"
             >
               <span>Explore The Collection</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       </section>
