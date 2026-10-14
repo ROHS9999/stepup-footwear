@@ -143,8 +143,13 @@ const AppContent = () => {
           description = 'Explore footwear picks for campus life, everyday outfits and student budgets at STEPUP.';
           break;
         default:
-          title = DEFAULT_TITLE;
-          description = DEFAULT_DESCRIPTION;
+          if (pathname === '/') {
+            title = DEFAULT_TITLE;
+            description = DEFAULT_DESCRIPTION;
+          } else {
+            title = 'Page Not Found | STEPUP';
+            description = 'The page you are looking for could not be found. Explore STEPUP footwear and campus sneaker collections.';
+          }
       }
     }
 
@@ -205,8 +210,16 @@ const AppContent = () => {
       case '/terms':
         return <TermsPage />;
       case '/':
-      default:
         return <HomePage />;
+      default:
+        return (
+          <section className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
+            <p className="text-sm uppercase tracking-[0.25em] text-[#A52A2A]">404 Error</p>
+            <h1 className="mt-4 text-4xl md:text-6xl font-bold">Page not found</h1>
+            <p className="mt-4 max-w-md text-[#555555]">Sorry, we couldn’t find that page. Explore our footwear collection instead.</p>
+            <a href="/shop" onClick={(event) => { event.preventDefault(); window.history.pushState({}, '', '/shop'); window.dispatchEvent(new PopStateEvent('popstate')); }} className="mt-8 inline-flex bg-[#111111] px-6 py-3 text-white hover:bg-[#A52A2A] transition-colors">Explore Shop</a>
+          </section>
+        );
     }
   };
 

@@ -185,24 +185,24 @@ export const Footer = () => {
               </h4>
               <ul className="space-y-2 text-xs text-[#888888]">
                 <li>
-                  <button onClick={() => navigate('/shop')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/shop" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/shop'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     All Footwear
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={() => navigate('/men')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/men" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/men'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     Men
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={() => navigate('/women')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/women" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/women'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     Women
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={() => navigate('/sneakers')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left font-medium text-[#D8CFC2]">
+                  <a href="/sneakers" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/sneakers'); } }} className="hover:text-[#F7F5F0] transition-colors text-left font-medium text-[#D8CFC2]">
                     Sneakers
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -214,19 +214,19 @@ export const Footer = () => {
               </h4>
               <ul className="space-y-2 text-xs text-[#888888]">
                 <li>
-                  <button onClick={() => navigate('/about')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/about" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/about'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     About
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={() => navigate('/journal')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/journal" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/journal'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     Journal
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={() => navigate('/contact')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/contact" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/contact'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     Contact
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -267,14 +267,14 @@ export const Footer = () => {
               </h4>
               <ul className="space-y-2 text-xs text-[#888888]">
                 <li>
-                  <button onClick={() => navigate('/privacy-policy')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/privacy-policy" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/privacy-policy'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     Privacy Policy
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={() => navigate('/terms')} className="hover:text-[#F7F5F0] transition-colors cursor-pointer text-left">
+                  <a href="/terms" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/terms'); } }} className="hover:text-[#F7F5F0] transition-colors text-left">
                     Terms & Conditions
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>

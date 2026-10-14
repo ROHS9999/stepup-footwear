@@ -26,8 +26,7 @@ export const BlogPage = () => {
         {blogs.map((article, idx) => (
           <article
             key={article.id}
-            onClick={() => navigate(`/journal/${article.slug}`)}
-            className={`group flex flex-col bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer ${
+            className={`group flex flex-col bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all ${
               idx === 0 ? 'md:col-span-2 lg:col-span-2' : ''
             }`}
           >
@@ -35,7 +34,9 @@ export const BlogPage = () => {
             <div className={`${idx === 0 ? 'aspect-16/9' : 'aspect-16/10'} bg-[#EFECE5] overflow-hidden relative`}>
               <img
                 src={article.image}
-                alt={article.title}
+                alt={`${article.title} - STEPUP college footwear guide`}
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
                 className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500 ease-out"
               />
               <span className="absolute top-3 left-3 bg-[#111111] text-[#F7F5F0] text-[9px] font-mono uppercase tracking-widest px-2.5 py-1">
@@ -59,7 +60,9 @@ export const BlogPage = () => {
                 </div>
 
                 <h2 className={`font-heading ${idx === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'} font-bold text-[#111111] group-hover:text-[#A52A2A] transition-colors leading-snug`}>
-                  {article.title}
+                  <a href={`/journal/${article.slug}`} onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate(`/journal/${article.slug}`); } }}>
+                    {article.title}
+                  </a>
                 </h2>
 
                 <p className="text-xs sm:text-sm text-[#666666] line-clamp-3 leading-relaxed">
@@ -68,7 +71,7 @@ export const BlogPage = () => {
               </div>
 
               <div className="pt-4 border-t border-[#F2EDE4] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#A52A2A]">
-                <span>Read Full Article</span>
+                <a href={`/journal/${article.slug}`} onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate(`/journal/${article.slug}`); } }}>Read Full Article</a>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>

@@ -21,13 +21,13 @@ export const BlogArticlePage = ({ slug }) => {
       
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#666666]">
-        <button onClick={() => navigate('/')} className="hover:text-[#111111] transition-colors cursor-pointer">
+        <a href="/" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/'); } }} className="hover:text-[#111111] transition-colors">
           HOME
-        </button>
+        </a>
         <ChevronRight className="w-3.5 h-3.5 text-[#888888]" />
-        <button onClick={() => navigate('/journal')} className="hover:text-[#111111] transition-colors cursor-pointer">
+        <a href="/journal" onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/journal'); } }} className="hover:text-[#111111] transition-colors">
           JOURNAL
-        </button>
+        </a>
         <ChevronRight className="w-3.5 h-3.5 text-[#888888]" />
         <span className="text-[#111111] font-semibold truncate">{article.title}</span>
       </nav>
@@ -152,13 +152,14 @@ export const BlogArticlePage = ({ slug }) => {
         <p className="text-xs text-[#666666] max-w-md mx-auto">
           Campus-tested comfort, student-friendly prices under ₹2,500, and free delivery on orders over ₹1,499.
         </p>
-        <button
-          onClick={() => navigate('/shop')}
-          className="mt-2 px-8 py-3.5 bg-[#111111] hover:bg-[#222222] text-[#F7F5F0] text-xs font-semibold uppercase tracking-widest transition-colors cursor-pointer inline-flex items-center gap-2"
+        <a
+          href="/shop"
+          onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/shop'); } }}
+          className="mt-2 px-8 py-3.5 bg-[#111111] hover:bg-[#222222] text-[#F7F5F0] text-xs font-semibold uppercase tracking-widest transition-colors inline-flex items-center gap-2"
         >
           <span>Shop Collection</span>
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </a>
       </section>
 
       {/* Related Style Guides Section */}
@@ -167,20 +168,22 @@ export const BlogArticlePage = ({ slug }) => {
           <h3 className="font-heading text-xl font-bold text-[#111111] uppercase tracking-tight">
             Related Campus Style Guides
           </h3>
-          <button
-            onClick={() => navigate('/journal')}
-            className="text-xs font-semibold uppercase tracking-wider text-[#A52A2A] hover:underline cursor-pointer"
+          <a
+            href="/journal"
+            onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate('/journal'); } }}
+            className="text-xs font-semibold uppercase tracking-wider text-[#A52A2A] hover:underline"
           >
             View All Guides →
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {otherArticles.slice(0, 4).map((other) => (
-            <div
+            <a
               key={other.id}
-              onClick={() => navigate(`/journal/${other.slug}`)}
-              className="p-5 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer space-y-2 group"
+              href={`/journal/${other.slug}`}
+              onClick={(event) => { if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); navigate(`/journal/${other.slug}`); } }}
+              className="block p-5 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all space-y-2 group"
             >
               <div className="flex items-center justify-between text-[10px] font-mono text-[#888888] uppercase">
                 <span>{other.category}</span>
@@ -192,7 +195,7 @@ export const BlogArticlePage = ({ slug }) => {
               <p className="text-xs text-[#666666] line-clamp-2">
                 {other.excerpt}
               </p>
-            </div>
+            </a>
           ))}
         </div>
       </section>

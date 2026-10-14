@@ -21,6 +21,37 @@ export const ProductDetailPage = ({ slug }) => {
   const inWishlist = isInWishlist(product.id);
   const relatedProducts = allProducts.filter((p) => p.id !== product.id).slice(0, 3);
 
+  const productUrl = `${window.location.origin}/product/${product.slug}`;
+  const productDescription = product.descriptor || `${product.name} from STEPUP footwear.`;
+  const productImage = product.image?.startsWith('http')
+    ? product.image
+    : new URL(product.image || '/', window.location.origin).href;
+  const productStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: productDescription,
+    image: [productImage],
+    sku: String(product.id),
+    category: String(product.category || 'Footwear').replace('-', ' '),
+    brand: { '@type': 'Brand', name: 'STEPUP' },
+    offers: {
+      '@type': 'Offer',
+      url: productUrl,
+      priceCurrency: 'INR',
+      price: Number(product.price).toFixed(2)
+    }
+  };
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
+      { '@type': 'ListItem', position: 2, name: 'Shop', item: `${window.location.origin}/shop` },
+      { '@type': 'ListItem', position: 3, name: product.name, item: productUrl }
+    ]
+  };
+
   const handleAddToCart = () => {
     addToCart(product, selectedSize, selectedColor, quantity);
   };
@@ -37,13 +68,13 @@ export const ProductDetailPage = ({ slug }) => {
       
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#666666]">
-        <button onClick={() => navigate('/')} className="hover:text-[#111111] transition-colors cursor-pointer">
+        <a href="/" onClick={(event) => { event.preventDefault(); navigate('/'); }} className="hover:text-[#111111] transition-colors">
           HOME
-        </button>
+        </a>
         <ChevronRight className="w-3.5 h-3.5 text-[#888888]" />
-        <button onClick={() => navigate('/shop')} className="hover:text-[#111111] transition-colors cursor-pointer">
+        <a href="/shop" onClick={(event) => { event.preventDefault(); navigate('/shop'); }} className="hover:text-[#111111] transition-colors">
           SHOP
-        </button>
+        </a>
         <ChevronRight className="w-3.5 h-3.5 text-[#888888]" />
         <span className="text-[#111111] font-semibold truncate">{product.name}</span>
       </nav>
@@ -56,7 +87,7 @@ export const ProductDetailPage = ({ slug }) => {
           <div className="aspect-4/5 bg-[#F4EFEA] border border-[#E8E2D8] overflow-hidden relative">
             <img
               src={selectedImage}
-              alt={product.name}
+              alt={`${product.name} - STEPUP ${product.category.replace("-", " ")} footwear`}
               className="w-full h-full object-cover object-center transition-all duration-300"
             />
             {product.badge && (
@@ -79,7 +110,7 @@ export const ProductDetailPage = ({ slug }) => {
                       : 'border-[#E8E2D8] opacity-75 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt={`Angle ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={`${product.name} footwear view ${idx + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

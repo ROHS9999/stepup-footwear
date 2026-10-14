@@ -46,7 +46,7 @@ export const HomePage = () => {
                 </h1>
 
                 <p className="text-sm sm:text-base text-[#666666] max-w-lg leading-relaxed font-normal">
-                  Stylish footwear made for campus days, late-night plans and everything in between. High-end editorial aesthetics built for 10,000 daily steps.
+                  Explore stylish college shoes and sneakers for students, made for campus days, late-night plans and everyday wear. High-end editorial aesthetics built for 10,000 daily steps.
                 </p>
               </div>
 
@@ -95,7 +95,9 @@ export const HomePage = () => {
               <div className="relative aspect-4/5 sm:aspect-1/1 lg:aspect-4/5 bg-[#EFECE5] border border-[#E8E2D8] overflow-hidden group">
                 <img
                   src="/images/stepup_urban_classic.jpg"
-                  alt="STEPUP Urban Classic 88 Sneaker"
+                  alt="STEPUP Urban Classic 88 sneaker for college students"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
                 />
 
@@ -398,6 +400,30 @@ export const HomePage = () => {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CAMPUS FOOTWEAR GUIDES — internal links to existing Journal content */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="space-y-2">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#A52A2A]">The STEPUP Journal</span>
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] uppercase">A smarter guide to college shoes</h2>
+          <p className="text-sm text-[#666666] max-w-2xl leading-relaxed">Compare everyday sneakers, find comfortable footwear for long college days, and choose a style that fits your student budget.</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {blogs.slice(0, 3).map((article) => (
+            <article key={article.id} className="p-5 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-colors">
+              <h3 className="font-heading text-base font-semibold text-[#111111] leading-snug">{article.title}</h3>
+              <p className="mt-2 text-xs text-[#666666] leading-relaxed">{article.excerpt}</p>
+              <a href={`/journal/${article.slug}`} onClick={(event) => handleInternalLink(event, `/journal/${article.slug}`)} className="inline-flex mt-4 text-xs font-semibold uppercase tracking-wider text-[#A52A2A] hover:text-[#111111]">Read guide <span aria-hidden="true" className="ml-1">→</span></a>
+            </article>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold underline underline-offset-4">
+          <a href="/shop" onClick={(event) => handleInternalLink(event, '/shop')}>Shop college shoes</a>
+          <a href="/men" onClick={(event) => handleInternalLink(event, '/men')}>Men’s sneakers</a>
+          <a href="/women" onClick={(event) => handleInternalLink(event, '/women')}>Women’s college shoes</a>
+          <a href="/shoes-under-2000" onClick={(event) => handleInternalLink(event, '/shoes-under-2000')}>Budget footwear</a>
         </div>
       </section>
 

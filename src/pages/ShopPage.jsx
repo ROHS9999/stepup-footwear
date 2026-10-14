@@ -127,7 +127,7 @@ export const ShopPage = () => {
           </h1>
 
           <p className="text-xs sm:text-sm text-[#666666] max-w-xl leading-relaxed">
-            Engineered for university life, 10,000 daily steps, and weekend fits. Student-friendly prices strictly from ₹1,699 to ₹2,799.
+            Explore college shoes and everyday sneakers for students, designed for university life, long campus days and weekend fits. Browse casual college footwear for men and women, including versatile sneaker styles for daily wear. Current collection prices range from ₹1,699 to ₹2,799.
           </p>
         </div>
 
