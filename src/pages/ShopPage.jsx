@@ -19,12 +19,15 @@ export const ShopPage = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Available Filter Options
+  // Keep filter values identical to the category names used in products.js.
+  // This ensures category links from the homepage show products instead of an empty grid.
   const categories = [
     { label: 'All Styles', value: 'all' },
-    { label: 'Runners', value: 'Runners' },
-    { label: 'Classics', value: 'Classics' },
+    { label: 'Everyday Sneakers', value: 'Everyday Sneakers' },
+    { label: 'Campus Classics', value: 'Campus Classics' },
     { label: 'Streetwear', value: 'Streetwear' },
-    { label: 'Daily Wear', value: 'Daily Wear' }
+    { label: 'Casual', value: 'Casual' },
+    { label: 'Platform Sneakers', value: 'Platform Sneakers' }
   ];
 
   const priceBuckets = [

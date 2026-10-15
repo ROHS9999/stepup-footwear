@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Search, ShoppingBag, Heart, Menu, X, ArrowRight } from 'lucide-react';
 
@@ -15,6 +15,27 @@ export const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuToggleRef = useRef(null);
+
+  // Let keyboard users close the mobile menu with Escape and return focus.
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false);
+        menuToggleRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  // Close the mobile menu whenever the active route changes.
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [currentPath]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
@@ -84,9 +105,11 @@ export const Navbar = () => {
           <div className="flex items-center justify-between h-16 sm:h-20">
             <div className="flex items-center gap-4">
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 -ml-2 text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer"
-                aria-label="Toggle navigation menu"
+                ref={menuToggleRef}
+                type="button"
+                onClick={() => setMobileMenuOpen((open) => !open)}
+                className="lg:hidden min-w-11 min-h-11 p-2 -ml-2 inline-flex items-center justify-center text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A52A2A]"
+                aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-navigation"
               >
@@ -131,7 +154,8 @@ export const Navbar = () => {
             <div className="flex items-center gap-1 sm:gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2.5 text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer"
+                type="button"
+                className="min-w-11 min-h-11 p-2.5 inline-flex items-center justify-center text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A52A2A]"
                 aria-label="Search footwear"
               >
                 <Search className="w-4 h-4 stroke-[1.8]" />
@@ -139,7 +163,8 @@ export const Navbar = () => {
 
               <button
                 onClick={() => setIsWishlistOpen(true)}
-                className="p-2.5 text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer relative"
+                type="button"
+                className="min-w-11 min-h-11 p-2.5 inline-flex items-center justify-center text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer relative focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A52A2A]"
                 aria-label="View saved items"
               >
                 <Heart className="w-4 h-4 stroke-[1.8]" />
@@ -152,7 +177,8 @@ export const Navbar = () => {
 
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="p-2.5 text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer relative flex items-center gap-1.5"
+                type="button"
+                className="min-w-11 min-h-11 p-2.5 inline-flex items-center justify-center text-[#111111] hover:text-[#A52A2A] transition-colors cursor-pointer relative gap-1.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A52A2A]"
                 aria-label="Open shopping bag"
               >
                 <ShoppingBag className="w-4 h-4 stroke-[1.8]" />

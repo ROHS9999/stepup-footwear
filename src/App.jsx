@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 
 import { AppProvider, useApp } from './context/AppContext';
 
@@ -10,24 +10,30 @@ import { WishlistDrawer } from './components/ui/WishlistDrawer';
 import { QuickViewModal } from './components/ui/QuickViewModal';
 import { Toast } from './components/ui/Toast';
 
-import { HomePage } from './pages/HomePage';
-import { ShopPage } from './pages/ShopPage';
-import { MenPage } from './pages/MenPage';
-import { WomenPage } from './pages/WomenPage';
-import { SneakersPage } from './pages/SneakersPage';
-import { ProductDetailPage } from './pages/ProductDetailPage';
-import { BlogPage } from './pages/BlogPage';
-import { BlogArticlePage } from './pages/BlogArticlePage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
-import { TermsPage } from './pages/TermsPage';
+const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
+const ShopPage = lazy(() => import('./pages/ShopPage').then((module) => ({ default: module.ShopPage })));
+const MenPage = lazy(() => import('./pages/MenPage').then((module) => ({ default: module.MenPage })));
+const WomenPage = lazy(() => import('./pages/WomenPage').then((module) => ({ default: module.WomenPage })));
+const SneakersPage = lazy(() => import('./pages/SneakersPage').then((module) => ({ default: module.SneakersPage })));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage').then((module) => ({ default: module.ProductDetailPage })));
+const BlogPage = lazy(() => import('./pages/BlogPage').then((module) => ({ default: module.BlogPage })));
+const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage').then((module) => ({ default: module.BlogArticlePage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then((module) => ({ default: module.AboutPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((module) => ({ default: module.ContactPage })));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((module) => ({ default: module.PrivacyPolicyPage })));
+const TermsPage = lazy(() => import('./pages/TermsPage').then((module) => ({ default: module.TermsPage })));
 
 const DEFAULT_TITLE =
   'STEPUP — Step Up Your Campus Style | Stylish Shoes for College Students';
 
 const DEFAULT_DESCRIPTION =
   'Discover STEPUP footwear for campus life, including everyday shoes, streetwear sneakers and student-friendly styles. Explore the collection.';
+
+// Treat /men and /men/ as the same route to avoid duplicate URLs and false 404s.
+const normalizePath = (path) => {
+  const pathname = (path || '/').split('?')[0] || '/';
+  return pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+};
 
 const ensureMetaDescription = () => {
   let tag = document.querySelector('meta[name="description"]');
@@ -57,7 +63,7 @@ const AppContent = () => {
   const { currentPath, allProducts, blogs } = useApp();
 
   useEffect(() => {
-    const pathname = currentPath.split('?')[0] || '/';
+    const pathname = normalizePath(currentPath);
     const productPrefix = '/product/';
     const journalPrefixes = ['/journal/', '/blog/'];
 
@@ -161,23 +167,34 @@ const AppContent = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPath, allProducts, blogs]);
 
+  const renderNotFound = () => (
+    <section className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
+      <p className="text-sm uppercase tracking-[0.25em] text-[#A52A2A]">404 Error</p>
+      <h1 className="mt-4 text-4xl md:text-6xl font-bold">Page not found</h1>
+      <p className="mt-4 max-w-md text-[#555555]">Sorry, we couldn’t find that page. Explore our footwear collection instead.</p>
+      <a href="/shop" onClick={(event) => { event.preventDefault(); window.history.pushState({}, '', '/shop'); window.dispatchEvent(new PopStateEvent('popstate')); }} className="mt-8 inline-flex bg-[#111111] px-6 py-3 text-white hover:bg-[#A52A2A] transition-colors">Explore Shop</a>
+    </section>
+  );
+
   const renderCurrentView = () => {
-    if (currentPath.startsWith('/product/')) {
-      const slug = currentPath.replace('/product/', '').split('?')[0];
+    const normalizedPath = normalizePath(currentPath);
+
+    if (normalizedPath.startsWith('/product/')) {
+      const slug = normalizedPath.slice('/product/'.length);
+      // Never show an unrelated product for a misspelled or outdated product URL.
+      if (!allProducts.some((product) => product.slug === slug)) return renderNotFound();
       return <ProductDetailPage slug={slug} />;
     }
 
-    if (currentPath.startsWith('/journal/')) {
-      const slug = currentPath.replace('/journal/', '').split('?')[0];
+    if (normalizedPath.startsWith('/journal/') || normalizedPath.startsWith('/blog/')) {
+      const prefix = normalizedPath.startsWith('/blog/') ? '/blog/' : '/journal/';
+      const slug = normalizedPath.slice(prefix.length);
+      // Keep journal and legacy blog URLs working, but reject unknown article slugs.
+      if (!blogs.some((article) => article.slug === slug)) return renderNotFound();
       return <BlogArticlePage slug={slug} />;
     }
 
-    if (currentPath.startsWith('/blog/')) {
-      const slug = currentPath.replace('/blog/', '').split('?')[0];
-      return <BlogArticlePage slug={slug} />;
-    }
-
-    const basePath = currentPath.split('?')[0];
+    const basePath = normalizedPath;
 
     if (basePath === '/men' || currentPath.includes('gender=men')) {
       return <MenPage />;
@@ -212,21 +229,18 @@ const AppContent = () => {
       case '/':
         return <HomePage />;
       default:
-        return (
-          <section className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#A52A2A]">404 Error</p>
-            <h1 className="mt-4 text-4xl md:text-6xl font-bold">Page not found</h1>
-            <p className="mt-4 max-w-md text-[#555555]">Sorry, we couldn’t find that page. Explore our footwear collection instead.</p>
-            <a href="/shop" onClick={(event) => { event.preventDefault(); window.history.pushState({}, '', '/shop'); window.dispatchEvent(new PopStateEvent('popstate')); }} className="mt-8 inline-flex bg-[#111111] px-6 py-3 text-white hover:bg-[#A52A2A] transition-colors">Explore Shop</a>
-          </section>
-        );
+        return renderNotFound();
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F7F5F0] text-[#111111] font-sans selection:bg-[#A52A2A] selection:text-[#F7F5F0]">
       <Navbar />
-      <main className="flex-1">{renderCurrentView()}</main>
+      <main className="flex-1">
+        <Suspense fallback={<div className="min-h-[60vh] bg-[#F7F5F0]" aria-label="Loading page" />}>
+          {renderCurrentView()}
+        </Suspense>
+      </main>
       <Footer />
       <CartDrawer />
       <SearchModal />
