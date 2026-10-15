@@ -6,12 +6,23 @@ export const SearchModal = () => {
   const { isSearchOpen, setIsSearchOpen, allProducts, blogs, navigate } = useApp();
   const [query, setQuery] = useState('');
   const inputRef = useRef(null);
+  const previousFocusRef = useRef(null);
 
   useEffect(() => {
     if (isSearchOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50);
+      previousFocusRef.current = document.activeElement;
+      const timer = window.setTimeout(() => inputRef.current?.focus(), 50);
+      const handleKeyDown = (event) => {
+        if (event.key === 'Escape') setIsSearchOpen(false);
+      };
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.clearTimeout(timer);
+        document.removeEventListener('keydown', handleKeyDown);
+      };
     } else {
       setQuery('');
+      previousFocusRef.current?.focus?.();
     }
   }, [isSearchOpen]);
 
@@ -19,17 +30,15 @@ export const SearchModal = () => {
 
   const filteredProducts = query.trim()
     ? allProducts.filter((p) =>
-        p.name.toLowerCase().includes(query.toLowerCase()) ||
-        p.category.toLowerCase().includes(query.toLowerCase()) ||
-        p.descriptor.toLowerCase().includes(query.toLowerCase()) ||
-        p.materials.toLowerCase().includes(query.toLowerCase())
+        [p.name, p.category, p.descriptor, p.materials]
+          .some((value) => String(value || '').toLowerCase().includes(query.trim().toLowerCase()))
       )
     : [];
 
   const filteredBlogs = query.trim()
     ? blogs.filter((b) =>
-        b.title.toLowerCase().includes(query.toLowerCase()) ||
-        b.subtitle.toLowerCase().includes(query.toLowerCase())
+        [b.title, b.subtitle, b.excerpt]
+          .some((value) => String(value || '').toLowerCase().includes(query.trim().toLowerCase()))
       )
     : [];
 
@@ -53,37 +62,40 @@ export const SearchModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 overflow-y-auto" onMouseDown={(event) => { if (event.target === event.currentTarget) setIsSearchOpen(false); }}>
       {/* Backdrop */}
       <div
+        aria-hidden="true"
         onClick={() => setIsSearchOpen(false)}
         className="fixed inset-0 bg-[#111111]/50 backdrop-blur-xs transition-opacity"
       />
 
       {/* Search Container */}
-      <div className="relative w-full max-w-2xl bg-[#F7F5F0] border border-[#E8E2D8] text-[#111111] shadow-2xl z-10 overflow-hidden">
+      <section role="dialog" aria-modal="true" aria-labelledby="stepup-search-title" className="relative w-full max-w-2xl bg-[#F7F5F0] border border-[#E8E2D8] text-[#111111] shadow-2xl z-10 overflow-hidden">
         {/* Search Input Bar */}
         <div className="px-6 py-4 border-b border-[#E8E2D8] flex items-center gap-3 bg-white">
           <Search className="w-5 h-5 text-[#666666] shrink-0 stroke-[1.8]" />
+          <label id="stepup-search-title" className="sr-only">Search STEPUP products and style guides</label>
           <input
             ref={inputRef}
+            aria-label="Search products and style guides"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search sneakers, campus classics, style guides..."
-            className="flex-1 bg-transparent text-sm md:text-base text-[#111111] placeholder-[#888888] focus:outline-hidden"
+            className="flex-1 bg-transparent text-sm md:text-base text-[#111111] placeholder-[#888888] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A52A2A]"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-xs text-[#666666] hover:text-[#111111] font-mono cursor-pointer"
+              className="text-xs text-[#666666] hover:text-[#111111] font-mono cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A52A2A]" aria-label="Clear search query"
             >
               CLEAR
             </button>
           )}
           <button
             onClick={() => setIsSearchOpen(false)}
-            className="p-1 text-[#666666] hover:text-[#111111] cursor-pointer"
+            className="p-2 min-w-11 min-h-11 text-[#666666] hover:text-[#111111] cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A52A2A]"
             aria-label="Close search"
           >
             <X className="w-5 h-5 stroke-[1.5]" />
@@ -102,7 +114,7 @@ export const SearchModal = () => {
                   <button
                     key={tag}
                     onClick={() => setQuery(tag)}
-                    className="px-3 py-1.5 bg-white hover:bg-[#EFECE5] border border-[#E8E2D8] text-xs text-[#111111] transition-colors cursor-pointer"
+                    className="px-3 py-1.5 bg-white hover:bg-[#EFECE5] border border-[#E8E2D8] text-xs text-[#111111] transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A52A2A]"
                   >
                     {tag}
                   </button>
@@ -121,10 +133,11 @@ export const SearchModal = () => {
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {filteredProducts.map((product) => (
-                      <div
+                      <button
+                        type="button"
                         key={product.id}
                         onClick={() => handleSelectProduct(product.slug)}
-                        className="flex items-center gap-3 p-2 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer group"
+                        className="w-full text-left flex items-center gap-3 p-2 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A52A2A]"
                       >
                         <div className="w-14 h-14 bg-[#F7F5F0] overflow-hidden shrink-0">
                           <img
@@ -142,7 +155,7 @@ export const SearchModal = () => {
                             ₹{product.price.toLocaleString('en-IN')}
                           </span>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -156,10 +169,11 @@ export const SearchModal = () => {
                   </span>
                   <div className="space-y-2">
                     {filteredBlogs.map((blog) => (
-                      <div
+                      <button
+                        type="button"
                         key={blog.id}
                         onClick={() => handleSelectBlog(blog.slug)}
-                        className="p-3 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer flex items-center justify-between"
+                        className="w-full text-left p-3 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer flex items-center justify-between focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A52A2A]"
                       >
                         <div>
                           <h4 className="font-heading text-xs font-semibold text-[#111111]">
@@ -168,7 +182,7 @@ export const SearchModal = () => {
                           <p className="text-[11px] text-[#666666] line-clamp-1">{blog.subtitle}</p>
                         </div>
                         <ArrowRight className="w-4 h-4 text-[#888888] shrink-0" />
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -176,7 +190,7 @@ export const SearchModal = () => {
             </div>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
 };

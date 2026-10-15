@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { X, Plus, Minus, Trash2, ArrowRight, ShieldCheck, Tag } from 'lucide-react';
 
@@ -25,6 +25,17 @@ export const CartDrawer = () => {
   const [promoInput, setPromoInput] = useState('');
   const [promoError, setPromoError] = useState('');
 
+  useEffect(() => {
+    if (!isCartOpen) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsCartOpen(false);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCartOpen, setIsCartOpen]);
+
   if (!isCartOpen) return null;
 
   const handleApplyPromo = (e) => {
@@ -48,18 +59,21 @@ export const CartDrawer = () => {
       {/* Backdrop */}
       <div
         onClick={() => setIsCartOpen(false)}
+        aria-hidden="true"
         className="absolute inset-0 bg-[#111111]/50 backdrop-blur-xs transition-opacity duration-300"
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
         <aside
-          aria-label="Shopping Bag"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cart-drawer-title"
           className="w-screen max-w-md bg-[#F7F5F0] border-l border-[#E8E2D8] text-[#111111] flex flex-col shadow-2xl animate-in slide-in-from-right duration-300"
         >
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#E8E2D8] flex items-center justify-between bg-[#F7F5F0]">
             <div className="flex items-center gap-2">
-              <h2 className="font-heading text-lg font-semibold tracking-tight text-[#111111]">
+              <h2 id="cart-drawer-title" className="font-heading text-lg font-semibold tracking-tight text-[#111111]">
                 Shopping Bag
               </h2>
               <span className="text-xs text-[#666666] font-mono">({cartCount})</span>
@@ -141,19 +155,20 @@ export const CartDrawer = () => {
                   <div className="flex-1 flex flex-col justify-between min-w-0">
                     <div>
                       <div className="flex items-start justify-between gap-2">
-                        <h4
+                        <button
+                          type="button"
                           onClick={() => {
                             setIsCartOpen(false);
                             navigate(`/product/${item.product.slug}`);
                           }}
-                          className="font-heading text-sm font-semibold text-[#111111] truncate cursor-pointer hover:text-[#A52A2A] transition-colors"
+                          className="text-left font-heading text-sm font-semibold text-[#111111] truncate cursor-pointer hover:text-[#A52A2A] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A52A2A]"
                         >
                           {item.product.name}
-                        </h4>
+                        </button>
                         <button
                           onClick={() => removeFromCart(item.id)}
                           className="text-[#888888] hover:text-[#A52A2A] transition-colors p-0.5 cursor-pointer"
-                          aria-label="Remove item"
+                          aria-label={`Remove ${item.product.name} from bag`}
                         >
                           <Trash2 className="w-3.5 h-3.5 stroke-[1.5]" />
                         </button>
@@ -169,7 +184,7 @@ export const CartDrawer = () => {
                         <button
                           onClick={() => updateQuantity(item.id, -1)}
                           className="w-7 h-7 flex items-center justify-center text-[#666666] hover:text-[#111111] transition-colors cursor-pointer"
-                          aria-label="Decrease quantity"
+                          aria-label={`Decrease quantity of ${item.product.name}`}
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -179,7 +194,7 @@ export const CartDrawer = () => {
                         <button
                           onClick={() => updateQuantity(item.id, 1)}
                           className="w-7 h-7 flex items-center justify-center text-[#666666] hover:text-[#111111] transition-colors cursor-pointer"
-                          aria-label="Increase quantity"
+                          aria-label={`Increase quantity of ${item.product.name}`}
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -204,7 +219,9 @@ export const CartDrawer = () => {
               {/* Promo Code Form */}
               <form onSubmit={handleApplyPromo} className="space-y-1.5">
                 <div className="flex gap-2">
+                  <label htmlFor="cart-promo-code" className="sr-only">Promo code</label>
                   <input
+                    id="cart-promo-code"
                     type="text"
                     value={promoInput}
                     onChange={(e) => {
@@ -221,7 +238,7 @@ export const CartDrawer = () => {
                     Apply
                   </button>
                 </div>
-                {promoError && <p className="text-[11px] text-[#A52A2A]">{promoError}</p>}
+                {promoError && <p role="alert" className="text-[11px] text-[#A52A2A]">{promoError}</p>}
                 {appliedPromo && (
                   <div className="flex items-center justify-between text-xs text-[#A52A2A] pt-1">
                     <span>Active code: <strong>{appliedPromo.code}</strong> ({appliedPromo.label})</span>

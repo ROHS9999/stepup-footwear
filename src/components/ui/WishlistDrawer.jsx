@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { X, Heart, Trash2, ArrowRight } from 'lucide-react';
 
@@ -12,6 +12,30 @@ export const WishlistDrawer = () => {
     navigate
   } = useApp();
 
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!isWishlistOpen) return;
+    const previousFocus = document.activeElement;
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsWishlistOpen(false);
+      if (event.key !== 'Tab') return;
+      const drawer = document.getElementById('stepup-wishlist-drawer');
+      const focusable = drawer?.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])');
+      if (!focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previousFocus?.focus?.();
+    };
+  }, [isWishlistOpen, setIsWishlistOpen]);
+
   if (!isWishlistOpen) return null;
 
   return (
@@ -19,23 +43,28 @@ export const WishlistDrawer = () => {
       {/* Backdrop */}
       <div
         onClick={() => setIsWishlistOpen(false)}
+        aria-hidden="true"
         className="absolute inset-0 bg-[#111111]/50 backdrop-blur-xs transition-opacity duration-300"
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
         <aside
-          aria-label="Wishlist Drawer"
+          id="stepup-wishlist-drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="stepup-wishlist-title"
           className="w-screen max-w-md bg-[#F7F5F0] border-l border-[#E8E2D8] text-[#111111] flex flex-col shadow-2xl animate-in slide-in-from-right duration-300"
         >
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#E8E2D8] flex items-center justify-between bg-[#F7F5F0]">
             <div className="flex items-center gap-2">
-              <h2 className="font-heading text-lg font-semibold tracking-tight text-[#111111]">
+              <h2 id="stepup-wishlist-title" className="font-heading text-lg font-semibold tracking-tight text-[#111111]">
                 Saved Favorites
               </h2>
               <span className="text-xs text-[#666666] font-mono">({wishlist.length})</span>
             </div>
             <button
+              ref={closeButtonRef}
               onClick={() => setIsWishlistOpen(false)}
               className="p-2 -mr-2 text-[#666666] hover:text-[#111111] transition-colors cursor-pointer"
               aria-label="Close wishlist"
@@ -75,11 +104,10 @@ export const WishlistDrawer = () => {
                   key={product.id}
                   className="flex gap-4 p-3 bg-white border border-[#E8E2D8] transition-all"
                 >
-                  <div
-                    onClick={() => {
-                      setIsWishlistOpen(false);
-                      navigate(`/product/${product.slug}`);
-                    }}
+                  <button
+                    type="button"
+                    onClick={() => { setIsWishlistOpen(false); navigate(`/product/${product.slug}`); }}
+                    aria-label={`View ${product.name}`}
                     className="w-20 h-24 bg-[#F7F5F0] overflow-hidden shrink-0 cursor-pointer"
                   >
                     <img
@@ -87,24 +115,18 @@ export const WishlistDrawer = () => {
                       alt={product.name}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </button>
 
                   <div className="flex-1 flex flex-col justify-between min-w-0">
                     <div>
                       <div className="flex items-start justify-between gap-2">
-                        <h4
-                          onClick={() => {
-                            setIsWishlistOpen(false);
-                            navigate(`/product/${product.slug}`);
-                          }}
-                          className="font-heading text-sm font-semibold text-[#111111] truncate cursor-pointer hover:text-[#A52A2A] transition-colors"
-                        >
+                        <button type="button" onClick={() => { setIsWishlistOpen(false); navigate(`/product/${product.slug}`); }} className="font-heading text-sm font-semibold text-[#111111] truncate text-left cursor-pointer hover:text-[#A52A2A] transition-colors" aria-label={`View ${product.name}`}>
                           {product.name}
-                        </h4>
+                        </button>
                         <button
                           onClick={() => toggleWishlist(product)}
                           className="text-[#888888] hover:text-[#A52A2A] p-0.5 cursor-pointer"
-                          aria-label="Remove from wishlist"
+                          aria-label={`Remove ${product.name} from wishlist`}
                         >
                           <Trash2 className="w-3.5 h-3.5 stroke-[1.5]" />
                         </button>
@@ -119,8 +141,9 @@ export const WishlistDrawer = () => {
 
                     <div className="pt-2">
                       <button
+                        type="button"
                         onClick={() => {
-                          addToCart(product, product.sizes[0]);
+                          addToCart(product, product.sizes?.[0]);
                           toggleWishlist(product);
                         }}
                         className="w-full py-2 bg-[#111111] hover:bg-[#222222] text-[#F7F5F0] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1.5"
