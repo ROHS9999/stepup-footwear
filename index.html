@@ -65,10 +65,37 @@
       href="https://fonts.gstatic.com"
       crossorigin
     />
+    <!-- Non-blocking font load (better First Contentful Paint / LCP) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <meta name="theme-color" content="#F7F5F0" />
+
+    <!-- Google Analytics 4 (replace G-XXXXXXXXXX with your Measurement ID) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      var GA_ID = 'G-YZVXYSEWSN';
+      if (GA_ID.indexOf('XXXX') === -1) {
+        var ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(ga);
+        gtag('js', new Date());
+        // page_view is sent manually on every route change (see src/utils/seo.js)
+        gtag('config', GA_ID, { send_page_view: false });
+      }
+    </script>
 
     <!-- Structured Data: STEPUP Footwear -->
     <script type="application/ld+json">
@@ -82,6 +109,26 @@
         "slogan": "Step Up Your Campus Style",
         "currenciesAccepted": "INR",
         "areaServed": "India"
+      }
+    </script>
+    <!-- Structured Data: WebSite + Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "STEPUP Footwear",
+            "url": "https://stepup-footwear.rohankumar88299.workers.dev/",
+            "inLanguage": "en-IN"
+          },
+          {
+            "@type": "Organization",
+            "name": "STEPUP STUDIO",
+            "url": "https://stepup-footwear.rohankumar88299.workers.dev/",
+            "logo": "https://stepup-footwear.rohankumar88299.workers.dev/favicon.svg"
+          }
+        ]
       }
     </script>
     <meta name="google-site-verification" content="fyCJS_CrvKh0K67G5LkfCBPH5AUO4LuvZkKnqXqjCE8" />

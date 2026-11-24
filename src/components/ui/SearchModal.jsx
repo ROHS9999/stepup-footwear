@@ -140,7 +140,7 @@ export const SearchModal = () => {
                         className="w-full text-left flex items-center gap-3 p-2 bg-white border border-[#E8E2D8] hover:border-[#111111] transition-all cursor-pointer group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#A52A2A]"
                       >
                         <div className="w-14 h-14 bg-[#F7F5F0] overflow-hidden shrink-0">
-                          <img
+                          <img decoding="async" loading="lazy" width="896" height="1200"
                             src={product.image}
                             alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform"

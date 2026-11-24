@@ -65,7 +65,7 @@ export const BlogArticlePage = ({ slug }) => {
 
       {/* Featured Editorial Photography */}
       <div className="aspect-16/9 bg-[#EFECE5] border border-[#E8E2D8] overflow-hidden">
-        <img
+        <img decoding="async" loading="lazy" width="896" height="1200"
           src={article.image}
           alt={article.title}
           className="w-full h-full object-cover"
@@ -103,7 +103,7 @@ export const BlogArticlePage = ({ slug }) => {
       <div className="p-6 sm:p-8 bg-white border border-[#E8E2D8] flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <div className="w-20 h-24 bg-[#EFECE5] overflow-hidden shrink-0 border border-[#E8E2D8]">
-            <img
+            <img decoding="async" loading="lazy" width="896" height="1200"
               src={spotlightProduct.image}
               alt={spotlightProduct.name}
               className="w-full h-full object-cover"

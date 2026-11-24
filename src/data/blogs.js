@@ -9,7 +9,7 @@ export const BLOG_ARTICLES = [
     authorRole: "Campus Style Editor",
     date: "October 2026",
     readTime: "5 min read",
-    image: "/images/stepup_urban_classic.jpg",
+    image: "/images/stepup_urban_classic.webp",
     excerpt: "Building an intentional college sneaker rotation doesn't require spending thousands. Discover the five best sneakers for college students designed for university life, endless quad walking, and effortless styling.",
     targetKeyword: "best sneakers for college students",
     tags: ["Best Sneakers", "College Footwear", "Campus Style", "Student Rotation"],
@@ -56,7 +56,7 @@ export const BLOG_ARTICLES = [
     authorRole: "Footwear Stylist & Streetwear Writer",
     date: "October 2026",
     readTime: "6 min read",
-    image: "/images/stepup_street_low.jpg",
+    image: "/images/stepup_street_low.webp",
     excerpt: "Looking for stylish shoes for college students? This comprehensive campus fashion guide breaks down silhouette proportions, color theory, and affordable footwear choices that elevate everyday college outfits.",
     targetKeyword: "stylish shoes for college students",
     tags: ["Stylish Shoes", "Campus Fashion", "College Outfits", "Student Style"],
@@ -99,7 +99,7 @@ export const BLOG_ARTICLES = [
     authorRole: "Fashion Merchandiser & Student Advocate",
     date: "October 2026",
     readTime: "5 min read",
-    image: "/images/stepup_campus_runner.jpg",
+    image: "/images/stepup_campus_runner.webp",
     excerpt: "You do not need to spend ₹10,000 on branded footwear to look incredible on campus. Explore the best affordable sneakers for college students that deliver premium comfort, durable builds, and honest student pricing.",
     targetKeyword: "affordable sneakers for college students",
     tags: ["Affordable Sneakers", "Budget College Shoes", "Student Friendly", "STEPUP Studio"],
@@ -147,7 +147,7 @@ export const BLOG_ARTICLES = [
     authorRole: "Campus Style Editor",
     date: "October 2026",
     readTime: "5 min read",
-    image: "/images/stepup_weekend_low.jpg",
+    image: "/images/stepup_weekend_low.webp",
     excerpt: "Wondering how to style sneakers for college? Learn how to build outfits from the ground up, master pant breaks, and pair versatile footwear with campus essentials like baggy denim and hoodies.",
     targetKeyword: "how to style sneakers for college",
     tags: ["Sneaker Styling", "College Fits", "Outfit Formulas", "Campus Life"],
@@ -204,7 +204,7 @@ export const BLOG_ARTICLES = [
     authorRole: "Footwear Ergonomist & Campus Writer",
     date: "October 2026",
     readTime: "5 min read",
-    image: "/images/stepup_campus_glide.jpg",
+    image: "/images/stepup_campus_glide.webp",
     excerpt: "Long college days require serious arch support and responsive cushioning. Discover how to choose comfortable shoes for college students that prevent heel fatigue and keep you energized through 10,000 daily steps.",
     targetKeyword: "comfortable shoes for college students",
     tags: ["Comfortable Shoes", "All Day Comfort", "Campus Ergonomics", "Arch Support"],
@@ -235,6 +235,129 @@ export const BLOG_ARTICLES = [
 
 <h2 id="recovery-tips">Daily Foot Health Habits for Active Students</h2>
 <p>Always pair comfortable footwear with breathable cotton athletic socks. Keep an extra pair of insoles in your dorm room, avoid wearing soaking-wet shoes, and let your rotation air out between marathon class days.</p>
+`
+  }
+  ,
+  {
+    id: "best-shoes-under-2000-for-college-students",
+    slug: "best-shoes-under-2000-for-college-students",
+    title: "Best Shoes Under ₹2,000 for College Students in India",
+    subtitle: "Four budget-friendly pairs that survive daily campus walking without looking cheap.",
+    category: "Budget Guide",
+    author: "Maya Lindqvist",
+    authorRole: "Fashion Merchandiser & Student Advocate",
+    date: "November 2026",
+    readTime: "4 min read",
+    image: "/images/stepup_campus_runner.webp",
+    excerpt: "Looking for the best shoes under 2000 for college students? Compare four comfortable, stylish pairs from STEPUP, with tips on fit, material and value for money.",
+    targetKeyword: "shoes under 2000 for college students",
+    tags: ["Shoes Under 2000", "Budget Shoes", "College Footwear", "Student Budget"],
+    tableOfContents: [
+      { id: "why-under-2000", title: "Why ₹2,000 Is the Sweet Spot for Students" },
+      { id: "top-picks-under-2000", title: "Four Best Picks Under ₹2,000" },
+      { id: "budget-buying-checklist", title: "Budget Buying Checklist" }
+    ],
+    content: `
+<h2 id="why-under-2000">Why ₹2,000 Is the Sweet Spot for Students</h2>
+<p>Most students walk a lot, wear the same pair almost every day, and do not want to spend half a month's allowance on shoes. The best <strong>shoes under 2000 for college students</strong> are light, easy to clean and neutral enough to match jeans, joggers and kurtas. Below ₹1,500 you often lose cushioning. Above ₹2,500 you usually pay for brand name, not comfort.</p>
+
+<h2 id="top-picks-under-2000">Four Best Picks Under ₹2,000</h2>
+<p><strong>1. <a href="/product/stepup-men-campus-runner">STEPUP Campus Runner (₹1,899)</a>.</strong> A breathable mesh runner with a cushioned insole. A good choice if your classes are far apart.</p>
+<p><strong>2. <a href="/product/stepup-women-campus-glide">STEPUP Campus Glide (₹1,899)</a>.</strong> A light everyday sneaker with a soft sole that works with jeans, leggings and casual dresses.</p>
+<p><strong>3. <a href="/product/stepup-men-daily-slip">STEPUP Daily Motion Slip (₹1,699)</a>.</strong> A slip-on for rushed mornings. No laces, quick to wear, and easy to carry in a bag.</p>
+<p><strong>4. <a href="/product/stepup-women-cloud-slip">STEPUP CloudSlip Canvas (₹1,699)</a>.</strong> A soft canvas slip-on that is easy to wash and light on the feet.</p>
+<p>You can see every budget-friendly style on our <a href="/shoes-under-2000">shoes under ₹2,000 page</a>.</p>
+
+<h2 id="budget-buying-checklist">Budget Buying Checklist</h2>
+<ul>
+<li><strong>Check the sole:</strong> a flexible rubber outsole lasts longer than a hard plastic one.</li>
+<li><strong>Pick neutral colours:</strong> white, grey and black go with most outfits, so one pair does more work.</li>
+<li><strong>Try shoes in the evening:</strong> feet swell during the day, so this gives a more honest fit.</li>
+<li><strong>Choose easy-clean material:</strong> mesh and canvas wash quickly; a hostel schedule rarely allows long cleaning.</li>
+</ul>
+<p>Want to see more options? Browse the full <a href="/shop">STEPUP shoe collection</a>.</p>
+`
+  }
+  ,
+  {
+    id: "how-to-clean-white-sneakers-at-home",
+    slug: "how-to-clean-white-sneakers-at-home",
+    title: "How to Clean White Sneakers at Home: A Simple Student Guide",
+    subtitle: "A five-minute routine using things you already have in your hostel room.",
+    category: "Care Guide",
+    author: "Dr. Marcus Chen",
+    authorRole: "Footwear Comfort Researcher",
+    date: "November 2026",
+    readTime: "4 min read",
+    image: "/images/stepup_court_one.webp",
+    excerpt: "Learn how to clean white sneakers at home with simple steps, safe materials and drying tips that keep your shoes looking fresh all semester.",
+    targetKeyword: "how to clean white sneakers",
+    tags: ["Sneaker Care", "Clean White Sneakers", "Shoe Care", "Student Tips"],
+    tableOfContents: [
+      { id: "what-you-need", title: "What You Need" },
+      { id: "cleaning-steps", title: "Step-by-Step Cleaning" },
+      { id: "keep-them-clean", title: "How to Keep White Sneakers Clean Longer" }
+    ],
+    content: `
+<h2 id="what-you-need">What You Need</h2>
+<p>Knowing <strong>how to clean white sneakers</strong> saves money and keeps your favourite pair in rotation for longer. You only need a soft brush (an old toothbrush works), mild liquid soap, lukewarm water, a clean cloth and some paper to stuff inside the shoes.</p>
+
+<h2 id="cleaning-steps">Step-by-Step Cleaning</h2>
+<ol>
+<li><strong>Remove laces and insoles.</strong> Wash laces separately in soapy water.</li>
+<li><strong>Brush off dry dust.</strong> Do this first so dirt does not turn into mud when wet.</li>
+<li><strong>Mix soap and water.</strong> Use a few drops of soap in a small bowl of lukewarm water.</li>
+<li><strong>Scrub gently in small circles.</strong> Start with the upper, then clean the midsole and outsole.</li>
+<li><strong>Wipe with a damp cloth.</strong> This removes soap so the shoe does not turn yellow later.</li>
+<li><strong>Dry in shade.</strong> Stuff paper inside to hold the shape. Direct sun and heaters can damage glue and fade colour.</li>
+</ol>
+<p>Leather-look styles such as the <a href="/product/stepup-men-court-one">STEPUP Court One Leather</a> only need a damp cloth wipe. Avoid soaking them.</p>
+
+<h2 id="keep-them-clean">How to Keep White Sneakers Clean Longer</h2>
+<ul>
+<li>Wipe the shoes with a damp cloth after muddy or rainy days.</li>
+<li>Rotate between two pairs so each pair can dry fully.</li>
+<li>Store them in a dry, airy place, not inside a closed bag.</li>
+</ul>
+<p>Need a fresh pair? See our <a href="/sneakers">sneakers for college students</a>.</p>
+`
+  }
+  ,
+  {
+    id: "college-shoes-for-girls-style-guide",
+    slug: "college-shoes-for-girls-style-guide",
+    title: "College Shoes for Girls: Comfortable and Stylish Picks",
+    subtitle: "From court sneakers to platforms, how to choose shoes that work for lectures and weekends.",
+    category: "Style Guide",
+    author: "Elena Vance",
+    authorRole: "Campus Style Editor",
+    date: "November 2026",
+    readTime: "4 min read",
+    image: "/images/stepup_elevate_platform.webp",
+    excerpt: "Find the best college shoes for girls: comfortable court sneakers, platforms and slip-ons that match jeans, dresses and kurtas, with styling tips.",
+    targetKeyword: "college shoes for girls",
+    tags: ["College Shoes for Girls", "Women's Sneakers", "Platform Sneakers", "Campus Style"],
+    tableOfContents: [
+      { id: "what-to-look-for", title: "What to Look For" },
+      { id: "top-styles", title: "Three Styles That Work Every Day" },
+      { id: "outfit-ideas", title: "Easy Outfit Ideas" }
+    ],
+    content: `
+<h2 id="what-to-look-for">What to Look For</h2>
+<p>The best <strong>college shoes for girls</strong> do three things: stay comfortable for long walks, match many outfits, and clean up easily. Look for a cushioned insole, a grippy sole for wet floors, and a shape that suits both jeans and dresses.</p>
+
+<h2 id="top-styles">Three Styles That Work Every Day</h2>
+<p><strong>Court sneakers.</strong> Clean and simple. The <a href="/product/stepup-women-retro-court">STEPUP Retro Court Classic (₹2,199)</a> and the <a href="/product/stepup-women-minimal-court">STEPUP Minimalist Low Court (₹2,399)</a> pair well with almost everything.</p>
+<p><strong>Platform sneakers.</strong> They add a little height without the pain of heels. Try the <a href="/product/stepup-women-elevate-platform">STEPUP Elevate 45 Platform (₹2,699)</a> for a bold but comfortable look.</p>
+<p><strong>Slip-ons and knit runners.</strong> Good for busy mornings. The <a href="/product/stepup-women-flex-pace">STEPUP Flex Pace Knit (₹1,999)</a> is light and breathable for long days.</p>
+
+<h2 id="outfit-ideas">Easy Outfit Ideas</h2>
+<ul>
+<li><strong>Jeans and a plain tee:</strong> court sneakers keep it clean.</li>
+<li><strong>Midi skirt or dress:</strong> a low-profile white sneaker balances the look.</li>
+<li><strong>Kurta with leggings:</strong> a neutral slip-on or knit runner works well.</li>
+</ul>
+<p>See the full range on our <a href="/women">women's footwear page</a>.</p>
 `
   }
 ];

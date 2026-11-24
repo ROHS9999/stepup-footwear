@@ -1,0 +1,27 @@
+# Cloudflare static-asset headers: caching + basic security (Milestone 2 – Speed & Caching)
+
+# Hashed JS/CSS files from Vite never change, so cache for one year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Product and blog images: cache for 30 days
+/images/*
+  Cache-Control: public, max-age=2592000
+
+# Icons and favicon
+/favicon.svg
+  Cache-Control: public, max-age=604800
+/icons.svg
+  Cache-Control: public, max-age=604800
+
+# SEO files: short cache so Google sees updates quickly
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# All pages
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN

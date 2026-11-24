@@ -9,6 +9,7 @@ import { SearchModal } from './components/ui/SearchModal';
 import { WishlistDrawer } from './components/ui/WishlistDrawer';
 import { QuickViewModal } from './components/ui/QuickViewModal';
 import { Toast } from './components/ui/Toast';
+import { applySeo, buildSchemas, trackPageView } from './utils/seo';
 
 const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
 const ShopPage = lazy(() => import('./pages/ShopPage').then((module) => ({ default: module.ShopPage })));
@@ -161,7 +162,27 @@ const AppContent = () => {
 
     document.title = title;
     ensureMetaDescription().setAttribute('content', description);
-    ensureCanonical().setAttribute('href', `${window.location.origin}${pathname}`);
+    // /blog URLs are the same pages as /journal, so point canonical to /journal to avoid duplicate content.
+    ensureCanonical().setAttribute('href', `${window.location.origin}${pathname.replace(/^\/blog(?=\/|$)/, '/journal')}`);
+
+    // Milestone 2: social tags, robots, JSON-LD schema and GA4 page view for every route.
+    const productSlug = pathname.startsWith('/product/') ? pathname.slice('/product/'.length).split('/')[0] : null;
+    const articleSlug = /^\/(journal|blog)\//.test(pathname) ? pathname.replace(/^\/(journal|blog)\//, '').split('/')[0] : null;
+    const currentProduct = productSlug ? allProducts.find((item) => item.slug === productSlug) : null;
+    const currentArticle = articleSlug ? blogs.find((item) => item.slug === articleSlug) : null;
+    const isKnownStaticRoute = title !== 'Page Not Found | STEPUP';
+    const isMissing = (productSlug && !currentProduct) || (articleSlug && !currentArticle) || !isKnownStaticRoute;
+
+    applySeo({
+      origin: window.location.origin,
+      pathname,
+      title,
+      description,
+      image: currentProduct?.image || currentArticle?.image,
+      noindex: Boolean(isMissing),
+      schemas: isMissing ? [] : buildSchemas({ origin: window.location.origin, pathname, product: currentProduct, article: currentArticle, allProducts }),
+    });
+    trackPageView(title, pathname);
 
     // Keep the existing smooth scroll behaviour on route changes.
     window.scrollTo({ top: 0, behavior: 'smooth' });

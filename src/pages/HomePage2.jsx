@@ -93,8 +93,8 @@ export const HomePage = () => {
             {/* Right Visual Column */}
             <div className="lg:col-span-6 animate-hero-scale">
               <div className="relative aspect-4/5 sm:aspect-1/1 lg:aspect-4/5 bg-[#EFECE5] border border-[#E8E2D8] overflow-hidden group">
-                <img
-                  src="/images/stepup_urban_classic.jpg"
+                <img decoding="async" loading="eager" fetchPriority="high" width="896" height="1200"
+                  src="/images/stepup_urban_classic.webp"
                   alt="STEPUP Urban Classic 88 Sneaker"
                   className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
                 />
@@ -184,7 +184,7 @@ export const HomePage = () => {
               onClick={(event) => handleInternalLink(event, cat.path)}
               className="group relative block aspect-3/4 sm:aspect-4/5 lg:aspect-3/4 bg-[#111111] overflow-hidden cursor-pointer border border-[#E8E2D8]"
             >
-              <img
+              <img decoding="async" width="896" height="1200"
                 src={cat.image}
                 alt={cat.title}
                 className="w-full h-full object-cover object-center opacity-85 group-hover:opacity-75 group-hover:scale-104 transition-all duration-700 ease-out"
@@ -293,7 +293,7 @@ export const HomePage = () => {
               <article className="flex flex-col h-full">
               {/* Image */}
               <div className="aspect-16/10 bg-[#EFECE5] overflow-hidden relative">
-                <img
+                <img decoding="async" width="896" height="1200"
                   src={article.image}
                   alt={article.title}
                   className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500 ease-out"

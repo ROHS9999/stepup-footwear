@@ -95,7 +95,7 @@ export const QuickViewModal = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="aspect-4/5 md:aspect-auto bg-[#EFECE5] relative overflow-hidden">
-            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <img decoding="async" loading="lazy" width="896" height="1200" src={product.image} alt={product.name} className="w-full h-full object-cover" />
             {product.badge && (
               <span className="absolute top-4 left-4 bg-[#111111] text-[#F7F5F0] text-[10px] font-mono uppercase tracking-widest px-2.5 py-1">
                 {product.badge}

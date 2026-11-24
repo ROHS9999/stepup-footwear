@@ -144,7 +144,7 @@ export const CartDrawer = () => {
                 >
                   {/* Thumbnail */}
                   <div className="w-20 h-24 bg-[#F7F5F0] overflow-hidden shrink-0 border border-[#E8E2D8]/60">
-                    <img
+                    <img decoding="async" loading="lazy" width="896" height="1200"
                       src={item.product.image}
                       alt={item.product.name}
                       className="w-full h-full object-cover"

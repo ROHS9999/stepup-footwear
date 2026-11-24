@@ -25,7 +25,7 @@ export const AboutPage = () => {
         </div>
         
         <h1 className="font-heading text-4xl sm:text-6xl font-bold tracking-tight text-[#111111] uppercase leading-tight">
-          BUILTT FOR CAMPUS LIFEE.
+          BUILTT FOR CAMPUS LIFEEE.
         </h1>
 
         <p className="text-sm sm:text-base text-[#666666] leading-relaxed max-w-2xl mx-auto">
@@ -36,8 +36,8 @@ export const AboutPage = () => {
       {/* Editorial Image & OUR IDEA Section */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-center">
         <div className="aspect-4/5 bg-[#EFECE5] border border-[#E8E2D8] overflow-hidden">
-          <img
-            src="/images/stepup_urban_classic.jpg"
+          <img decoding="async" loading="lazy" width="896" height="1200"
+            src="/images/stepup_urban_classic.webp"
             alt="STEPUP minimalist campus footwear editorial"
             className="w-full h-full object-cover"
           />

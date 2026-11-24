@@ -22,9 +22,9 @@ export const MEN_PRODUCTS = [
       { name: "Charcoal", hex: "#333333", family: "Black" }
     ],
     primaryColor: "White",
-    image: "/images/stepup_campus_runner.jpg",
+    image: "/images/stepup_campus_runner.webp",
     gallery: [
-      "/images/stepup_campus_runner.jpg"
+      "/images/stepup_campus_runner.webp"
     ],
     comfortInfo: "12mm high-rebound ergonomic insole built for lab sessions and cross-campus walks.",
     materials: "Ripstop nylon mesh, responsive EVA midsole, anti-slip rubber outsole.",
@@ -54,9 +54,9 @@ export const MEN_PRODUCTS = [
       { name: "Sand", hex: "#D8CFC2", family: "Beige" }
     ],
     primaryColor: "White",
-    image: "/images/stepup_street_low.jpg",
+    image: "/images/stepup_street_low.webp",
     gallery: [
-      "/images/stepup_street_low.jpg"
+      "/images/stepup_street_low.webp"
     ],
     comfortInfo: "Anatomical heel cup and padded collar ensure zero break-in period.",
     materials: "Full action synthetic leather, micro-suede mudguard, non-marking gum tread.",
@@ -86,9 +86,9 @@ export const MEN_PRODUCTS = [
       { name: "Burgundy Accent", hex: "#A52A2A", family: "Burgundy" }
     ],
     primaryColor: "Beige",
-    image: "/images/stepup_urban_classic.jpg",
+    image: "/images/stepup_urban_classic.webp",
     gallery: [
-      "/images/stepup_urban_classic.jpg"
+      "/images/stepup_urban_classic.webp"
     ],
     comfortInfo: "Dual-density memory foam footbed prevents foot fatigue during marathon lecture days.",
     materials: "Wipe-clean vegan leather, organic cotton flat laces, vulcanized rubber cupsole.",
@@ -118,9 +118,9 @@ export const MEN_PRODUCTS = [
       { name: "Off-White", hex: "#F7F5F0", family: "White" }
     ],
     primaryColor: "Black",
-    image: "/images/stepup_daily_motion.jpg",
+    image: "/images/stepup_daily_motion.webp",
     gallery: [
-      "/images/stepup_daily_motion.jpg"
+      "/images/stepup_daily_motion.webp"
     ],
     comfortInfo: "CloudFoam 10mm insole for instant pillow-soft step-in comfort.",
     materials: "Flexible woven duck canvas, stretch elastic side gussets, textured rubber sole.",
@@ -150,9 +150,9 @@ export const MEN_PRODUCTS = [
       { name: "Burgundy Accent", hex: "#A52A2A", family: "Burgundy" }
     ],
     primaryColor: "Grey",
-    image: "/images/stepup_campus_90.jpg",
+    image: "/images/stepup_campus_90.webp",
     gallery: [
-      "/images/stepup_campus_90.jpg"
+      "/images/stepup_campus_90.webp"
     ],
     comfortInfo: "Hollow shock-absorption midsole distributes weight without feeling heavy.",
     materials: "Multi-layered breathable mesh, synthetic nubuck overlays, phylon platform.",
@@ -182,9 +182,9 @@ export const MEN_PRODUCTS = [
       { name: "Off-White", hex: "#F7F5F0", family: "Beige" }
     ],
     primaryColor: "White",
-    image: "/images/stepup_court_one.jpg",
+    image: "/images/stepup_court_one.webp",
     gallery: [
-      "/images/stepup_court_one.jpg"
+      "/images/stepup_court_one.webp"
     ],
     comfortInfo: "Ventilated micro-perforations keep feet cool through hot afternoon labs.",
     materials: "Supple synthetic nappa leather, reinforced toe cap, grippy honey gum outsole.",
@@ -214,9 +214,9 @@ export const MEN_PRODUCTS = [
       { name: "White", hex: "#FFFFFF", family: "White" }
     ],
     primaryColor: "Navy",
-    image: "/images/stepup_street_flex.jpg",
+    image: "/images/stepup_street_flex.webp",
     gallery: [
-      "/images/stepup_street_flex.jpg"
+      "/images/stepup_street_flex.webp"
     ],
     comfortInfo: "Seamless sock-fit upper prevents friction and pressure points across the instep.",
     materials: "Engineered stretch knit, molded TPU heel support, segmented flex grooves.",
@@ -246,9 +246,9 @@ export const MEN_PRODUCTS = [
       { name: "Black", hex: "#111111", family: "Black" }
     ],
     primaryColor: "Burgundy",
-    image: "/images/stepup_weekend_low.jpg",
+    image: "/images/stepup_weekend_low.webp",
     gallery: [
-      "/images/stepup_weekend_low.jpg"
+      "/images/stepup_weekend_low.webp"
     ],
     comfortInfo: "Memory gel heel cup provides all-day stability on hard cafe and auditorium floors.",
     materials: "Water-treated micro-suede, leather lining accents, low-profile cupsole.",
@@ -281,9 +281,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Burgundy Trim", hex: "#A52A2A", family: "Burgundy" }
     ],
     primaryColor: "White",
-    image: "/images/stepup_campus_glide.jpg",
+    image: "/images/stepup_campus_glide.webp",
     gallery: [
-      "/images/stepup_campus_glide.jpg"
+      "/images/stepup_campus_glide.webp"
     ],
     comfortInfo: "12mm CloudFoam dual-density footbed engineered for endless quad walking.",
     materials: "Breathable engineered mesh, responsive phylon foam, abrasion-resistant gum toe.",
@@ -313,9 +313,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Black", hex: "#111111", family: "Black" }
     ],
     primaryColor: "White",
-    image: "/images/stepup_elevate_platform.jpg",
+    image: "/images/stepup_elevate_platform.webp",
     gallery: [
-      "/images/stepup_elevate_platform.jpg"
+      "/images/stepup_elevate_platform.webp"
     ],
     comfortInfo: "Lightweight hollow-core platform sole provides lift without heavy drag.",
     materials: "Vegan action leather, padded foam collar, textured high-grip platform base.",
@@ -345,9 +345,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Burgundy Accent", hex: "#A52A2A", family: "Burgundy" }
     ],
     primaryColor: "White",
-    image: "/images/stepup_court_one.jpg",
+    image: "/images/stepup_court_one.webp",
     gallery: [
-      "/images/stepup_court_one.jpg"
+      "/images/stepup_court_one.webp"
     ],
     comfortInfo: "Molded anatomical arch insole designed specifically for narrow heel profiles.",
     materials: "Wipe-clean synthetic leather, organic cotton laces, non-marking gum outsole.",
@@ -377,9 +377,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Off-White", hex: "#F7F5F0", family: "White" }
     ],
     primaryColor: "Beige",
-    image: "/images/stepup_daily_motion.jpg",
+    image: "/images/stepup_daily_motion.webp",
     gallery: [
-      "/images/stepup_daily_motion.jpg"
+      "/images/stepup_daily_motion.webp"
     ],
     comfortInfo: "Elastic side gore stretches gently for instant hands-free slipping.",
     materials: "12oz washed cotton canvas, memory-foam footbed, vulcanized waffle grip.",
@@ -409,9 +409,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Oatmeal", hex: "#E5DFD5", family: "Beige" }
     ],
     primaryColor: "Grey",
-    image: "/images/stepup_campus_90.jpg",
+    image: "/images/stepup_campus_90.webp",
     gallery: [
-      "/images/stepup_campus_90.jpg"
+      "/images/stepup_campus_90.webp"
     ],
     comfortInfo: "Cushioned tongue and collar eliminate heel slip and pressure points.",
     materials: "Layered technical mesh, vegan nubuck overlays, high-rebound midsole.",
@@ -441,9 +441,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Black", hex: "#111111", family: "Black" }
     ],
     primaryColor: "Beige",
-    image: "/images/stepup_street_low.jpg",
+    image: "/images/stepup_street_low.webp",
     gallery: [
-      "/images/stepup_street_low.jpg"
+      "/images/stepup_street_low.webp"
     ],
     comfortInfo: "Ergonomic shock pad in heel dampens impact on concrete stairs and library tiles.",
     materials: "Scratch-resistant vegan leather, recycled polyester lining, vulcanized rubber sole.",
@@ -473,9 +473,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Charcoal", hex: "#333333", family: "Black" }
     ],
     primaryColor: "Burgundy",
-    image: "/images/stepup_street_flex.jpg",
+    image: "/images/stepup_street_flex.webp",
     gallery: [
-      "/images/stepup_street_flex.jpg"
+      "/images/stepup_street_flex.webp"
     ],
     comfortInfo: "Engineered knit molds to your foot for custom sock-like support.",
     materials: "Breathable circular knit, molded arch shank, ultra-light EVA midsole.",
@@ -505,9 +505,9 @@ export const WOMEN_PRODUCTS = [
       { name: "Black", hex: "#111111", family: "Black" }
     ],
     primaryColor: "Burgundy",
-    image: "/images/stepup_weekend_low.jpg",
+    image: "/images/stepup_weekend_low.webp",
     gallery: [
-      "/images/stepup_weekend_low.jpg"
+      "/images/stepup_weekend_low.webp"
     ],
     comfortInfo: "Plush suede lining with cushioned arch bridge for evening wear.",
     materials: "Micro-suede upper with water-resistant finish, gum rubber low cupsole.",
@@ -526,7 +526,7 @@ export const CATEGORIES_DATA = [
     id: "everyday-sneakers",
     title: "Everyday Sneakers",
     tagline: "For 8 AM lectures, library grinds & 10,000 steps",
-    image: "/images/stepup_campus_runner.jpg",
+    image: "/images/stepup_campus_runner.webp",
     itemCount: "8 Styles",
     path: "/shop?category=Everyday Sneakers"
   },
@@ -534,7 +534,7 @@ export const CATEGORIES_DATA = [
     id: "campus-classics",
     title: "Campus Classics",
     tagline: "Timeless court & retro profiles that never go out of style",
-    image: "/images/stepup_urban_classic.jpg",
+    image: "/images/stepup_urban_classic.webp",
     itemCount: "6 Styles",
     path: "/shop?category=Campus Classics"
   },
@@ -542,7 +542,7 @@ export const CATEGORIES_DATA = [
     id: "weekend-fits",
     title: "Weekend Fits",
     tagline: "Sculpted trainers & elevated silhouettes for nights out",
-    image: "/images/stepup_elevate_platform.jpg",
+    image: "/images/stepup_elevate_platform.webp",
     itemCount: "5 Styles",
     path: "/shop?category=Streetwear"
   }

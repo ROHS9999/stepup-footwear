@@ -33,7 +33,7 @@ export const BlogPage = () => {
           >
             {/* Image */}
             <div className={`${idx === 0 ? 'aspect-16/9' : 'aspect-16/10'} bg-[#EFECE5] overflow-hidden relative`}>
-              <img
+              <img decoding="async" loading="lazy" width="896" height="1200"
                 src={article.image}
                 alt={article.title}
                 className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500 ease-out"

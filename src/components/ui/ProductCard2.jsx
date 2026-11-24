@@ -37,7 +37,7 @@ export const ProductCard = ({ product }) => {
           aria-label={`View ${product.name}`}
           className="block w-full h-full"
         >
-          <img
+          <img decoding="async" width="896" height="1200"
             src={product.image}
             alt={`${product.name} footwear`}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"

@@ -85,7 +85,7 @@ export const ProductDetailPage = ({ slug }) => {
         {/* Left: Gallery Column */}
         <div className="lg:col-span-7 space-y-4">
           <div className="aspect-4/5 bg-[#F4EFEA] border border-[#E8E2D8] overflow-hidden relative">
-            <img
+            <img width="896" height="1200"
               src={selectedImage}
               alt={`${product.name} - STEPUP ${(product.category || "footwear").replace(/-/g, " ")}`}
               fetchPriority="high"
@@ -116,7 +116,7 @@ export const ProductDetailPage = ({ slug }) => {
                       : 'border-[#E8E2D8] opacity-75 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt={`${product.name} footwear view ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                  <img width="896" height="1200" src={img} alt={`${product.name} footwear view ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

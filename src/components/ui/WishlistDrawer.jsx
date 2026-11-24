@@ -110,7 +110,7 @@ export const WishlistDrawer = () => {
                     aria-label={`View ${product.name}`}
                     className="w-20 h-24 bg-[#F7F5F0] overflow-hidden shrink-0 cursor-pointer"
                   >
-                    <img
+                    <img decoding="async" loading="lazy" width="896" height="1200"
                       src={product.image}
                       alt={product.name}
                       className="w-full h-full object-cover"
