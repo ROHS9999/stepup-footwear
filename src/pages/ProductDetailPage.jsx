@@ -12,6 +12,7 @@ export const ProductDetailPage = ({ slug }) => {
 
   const product = allProducts.find((p) => p.slug === slug) || allProducts[0];
   const [selectedImage, setSelectedImage] = useState(product.image);
+  const [isZoomed, setIsZoomed] = useState(false);
   const [selectedSize, setSelectedSize] = useState(product.sizes[1] || product.sizes[0]);
   const [selectedColor, setSelectedColor] = useState(
     product.colors && product.colors[0] ? product.colors[0].name : 'Default'
@@ -86,13 +87,17 @@ export const ProductDetailPage = ({ slug }) => {
         {/* Left: Gallery Column */}
         <div className="lg:col-span-7 space-y-4">
           <div className="aspect-4/5 bg-[#F4EFEA] border border-[#E8E2D8] overflow-hidden relative">
-            <img width="896" height="1200"
+            <img
+              width="896"
+              height="1200"
               src={selectedImage}
-              alt={`${product.name} - STEPUP ${(product.category || "footwear").replace(/-/g, " ")}`}
+              alt={product.name}
               fetchPriority="high"
               loading="eager"
               decoding="async"
-              className="w-full h-full object-cover object-center transition-all duration-300"
+              onClick={() => setIsZoomed(!isZoomed)}
+              className={`w-full h-full object-cover object-center transition-transform duration-500 ${isZoomed ? 'scale-150 cursor-zoom-out' : 'cursor-zoom-in'
+                }`}
             />
             {product.badge && (
               <span className="absolute top-4 left-4 bg-[#111111] text-[#F7F5F0] text-[10px] font-mono uppercase tracking-widest px-3 py-1">
@@ -112,8 +117,8 @@ export const ProductDetailPage = ({ slug }) => {
                   aria-label={`Show product image ${idx + 1} of ${product.name}`}
                   aria-pressed={selectedImage === img}
                   className={`w-20 h-24 bg-[#EFECE5] border overflow-hidden cursor-pointer transition-all ${selectedImage === img
-                      ? 'border-[#111111] ring-1 ring-[#111111]'
-                      : 'border-[#E8E2D8] opacity-75 hover:opacity-100'
+                    ? 'border-[#111111] ring-1 ring-[#111111]'
+                    : 'border-[#E8E2D8] opacity-75 hover:opacity-100'
                     }`}
                 >
                   <img width="896" height="1200" src={img} alt={`${product.name} footwear view ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
@@ -182,8 +187,8 @@ export const ProductDetailPage = ({ slug }) => {
                     key={i}
                     onClick={() => setSelectedColor(c.name)}
                     className={`px-3.5 py-2 text-xs border transition-all cursor-pointer ${selectedColor === c.name
-                        ? 'border-[#111111] bg-[#111111] text-[#F7F5F0]'
-                        : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
+                      ? 'border-[#111111] bg-[#111111] text-[#F7F5F0]'
+                      : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
                       }`}
                   >
                     {c.name}
@@ -210,8 +215,8 @@ export const ProductDetailPage = ({ slug }) => {
                   key={s}
                   onClick={() => setSelectedSize(s)}
                   className={`py-3 text-xs font-mono transition-all border cursor-pointer ${selectedSize === s
-                      ? 'border-[#111111] bg-[#111111] text-[#F7F5F0] font-bold'
-                      : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
+                    ? 'border-[#111111] bg-[#111111] text-[#F7F5F0] font-bold'
+                    : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
                     }`}
                 >
                   {s}
@@ -233,8 +238,8 @@ export const ProductDetailPage = ({ slug }) => {
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`px-4 border transition-colors cursor-pointer flex items-center justify-center ${inWishlist
-                    ? 'border-[#A52A2A] text-[#A52A2A] bg-white'
-                    : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
+                  ? 'border-[#A52A2A] text-[#A52A2A] bg-white'
+                  : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
                   }`}
                 aria-label="Toggle wishlist"
               >
@@ -272,8 +277,8 @@ export const ProductDetailPage = ({ slug }) => {
               <button
                 onClick={() => setActiveTab('comfort')}
                 className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer mr-6 ${activeTab === 'comfort'
-                    ? 'text-[#111111] border-b-2 border-[#A52A2A]'
-                    : 'text-[#888888] hover:text-[#111111]'
+                  ? 'text-[#111111] border-b-2 border-[#A52A2A]'
+                  : 'text-[#888888] hover:text-[#111111]'
                   }`}
               >
                 Comfort Tech
@@ -281,8 +286,8 @@ export const ProductDetailPage = ({ slug }) => {
               <button
                 onClick={() => setActiveTab('materials')}
                 className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer mr-6 ${activeTab === 'materials'
-                    ? 'text-[#111111] border-b-2 border-[#A52A2A]'
-                    : 'text-[#888888] hover:text-[#111111]'
+                  ? 'text-[#111111] border-b-2 border-[#A52A2A]'
+                  : 'text-[#888888] hover:text-[#111111]'
                   }`}
               >
                 Materials
@@ -290,8 +295,8 @@ export const ProductDetailPage = ({ slug }) => {
               <button
                 onClick={() => setActiveTab('styling')}
                 className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer ${activeTab === 'styling'
-                    ? 'text-[#111111] border-b-2 border-[#A52A2A]'
-                    : 'text-[#888888] hover:text-[#111111]'
+                  ? 'text-[#111111] border-b-2 border-[#A52A2A]'
+                  : 'text-[#888888] hover:text-[#111111]'
                   }`}
               >
                 Campus Styling
@@ -312,7 +317,7 @@ export const ProductDetailPage = ({ slug }) => {
       {/* Related Campus Styles */}
       <section className="pt-12 border-t border-[#E8E2D8] space-y-8">
         <div className="flex items-center justify-between">
-          
+
           <h2 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-[#111111] uppercase">
             Complete Your Campus Rotation
           </h2>
