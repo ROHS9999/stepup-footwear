@@ -26,12 +26,12 @@ export const HomePage = () => {
 
   return (
     <div className="space-y-24 md:space-y-36 pb-24">
-      
+
       {/* 2. HERO SECTION */}
       <section className="relative overflow-hidden pt-6 pb-16 md:pt-12 md:pb-24 border-b border-[#E8E2D8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
+
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-6 lg:space-y-8 animate-hero-fade-up">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#EFECE5] border border-[#E8E2D8] text-[10px] font-mono tracking-widest uppercase text-[#111111]">
@@ -93,13 +93,23 @@ export const HomePage = () => {
             {/* Right Visual Column */}
             <div className="lg:col-span-6 animate-hero-scale">
               <div className="relative aspect-4/5 sm:aspect-1/1 lg:aspect-4/5 bg-[#EFECE5] border border-[#E8E2D8] overflow-hidden group">
-                <img loading="eager" width="896" height="1200"
-                  src="/images/stepup_urban_classic.webp"
-                  alt="STEPUP Urban Classic 88 sneaker for college students"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
-                />
+                <picture>
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet="/images/stepup_urban_classic-sm.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    loading="eager"
+                    width="896"
+                    height="1200"
+                    src="/images/stepup_urban_classic.webp"
+                    alt="STEPUP Urban Classic 88 sneaker for college students"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
+                  />
+                </picture>
 
                 {/* Subtle Floating Editorial Tag */}
                 <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#F7F5F0]/95 backdrop-blur-xs border border-[#E8E2D8] flex items-center justify-between">
@@ -293,38 +303,38 @@ export const HomePage = () => {
               className="group block bg-white border border-[#E8E2D8] hover:border-[#111111] transition-colors"
             >
               <article className="flex flex-col h-full">
-              {/* Image */}
-              <div className="aspect-16/10 bg-[#EFECE5] overflow-hidden relative">
-                <img decoding="async" width="896" height="1200"
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500 ease-out"
-                  loading="lazy"
-                />
-                <span className="absolute top-3 left-3 bg-[#111111] text-[#F7F5F0] text-[9px] font-mono uppercase tracking-widest px-2.5 py-1">
-                  {article.category}
-                </span>
-              </div>
+                {/* Image */}
+                <div className="aspect-16/10 bg-[#EFECE5] overflow-hidden relative">
+                  <img decoding="async" width="896" height="1200"
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-3 left-3 bg-[#111111] text-[#F7F5F0] text-[9px] font-mono uppercase tracking-widest px-2.5 py-1">
+                    {article.category}
+                  </span>
+                </div>
 
-              {/* Text */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div className="space-y-2">
-                  <div className="text-[11px] font-mono text-[#888888] uppercase tracking-wider">
-                    {article.date} • {article.readTime}
+                {/* Text */}
+                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="text-[11px] font-mono text-[#888888] uppercase tracking-wider">
+                      {article.date} • {article.readTime}
+                    </div>
+                    <h3 className="font-heading text-lg font-bold text-[#111111] group-hover:text-[#A52A2A] transition-colors leading-snug">
+                      {article.title}
+                    </h3>
+                    <p className="text-xs text-[#666666] line-clamp-2 leading-relaxed">
+                      {article.excerpt}
+                    </p>
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-[#111111] group-hover:text-[#A52A2A] transition-colors leading-snug">
-                    {article.title}
-                  </h3>
-                  <p className="text-xs text-[#666666] line-clamp-2 leading-relaxed">
-                    {article.excerpt}
-                  </p>
-                </div>
 
-                <div className="pt-3 border-t border-[#F2EDE4] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#A52A2A]">
-                  <span>Read Guide</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <div className="pt-3 border-t border-[#F2EDE4] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#A52A2A]">
+                    <span>Read Guide</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-              </div>
               </article>
             </a>
           ))}
