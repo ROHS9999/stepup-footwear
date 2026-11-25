@@ -4,10 +4,20 @@ import { AppProvider, useApp } from './context/AppContext';
 
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { CartDrawer } from './components/ui/CartDrawer';
-import { SearchModal } from './components/ui/SearchModal';
-import { WishlistDrawer } from './components/ui/WishlistDrawer';
-import { QuickViewModal } from './components/ui/QuickViewModal';
+
+// import { CartDrawer } from './components/ui/CartDrawer';
+// import { SearchModal } from './components/ui/SearchModal';
+// import { WishlistDrawer } from './components/ui/WishlistDrawer';
+// import { QuickViewModal } from './components/ui/QuickViewModal';
+
+const CartDrawer = lazy(() => import('./components/ui/CartDrawer').then(m => ({ default: m.CartDrawer })));
+
+const SearchModal = lazy(() => import('./components/ui/SearchModal').then(m => ({ default: m.SearchModal })));
+
+const WishlistDrawer = lazy(() => import('./components/ui/WishlistDrawer').then(m => ({ default: m.WishlistDrawer })));
+
+const QuickViewModal = lazy(() => import('./components/ui/QuickViewModal').then(m => ({ default: m.QuickViewModal })));
+
 import { Toast } from './components/ui/Toast';
 import { applySeo, buildSchemas, trackPageView } from './utils/seo';
 
@@ -62,7 +72,16 @@ const ensureCanonical = () => {
 };
 
 const AppContent = () => {
-  const { currentPath, allProducts, blogs } = useApp();
+  // const { currentPath, allProducts, blogs } = useApp();
+  const {
+    currentPath,
+    allProducts,
+    blogs,
+    isCartOpen,
+    isSearchOpen,
+    isWishlistOpen,
+    quickAddProduct
+  } = useApp();
 
   useEffect(() => {
     const pathname = normalizePath(currentPath);
@@ -264,10 +283,12 @@ const AppContent = () => {
         </Suspense>
       </main>
       <Footer />
-      <CartDrawer />
-      <SearchModal />
-      <WishlistDrawer />
-      <QuickViewModal />
+      <Suspense fallback={null}>
+        {isCartOpen && <CartDrawer />}
+        {isSearchOpen && <SearchModal />}
+        {isWishlistOpen && <WishlistDrawer />}
+        {quickAddProduct && <QuickViewModal />}
+      </Suspense>
       <Toast />
     </div>
   );
