@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { ProductCard } from '../components/ui/ProductCard';
-import { 
-  ArrowLeft, Heart, ShieldCheck, Truck, RefreshCw, Star, 
-  Check, ChevronRight, Share2 
+import { ProductReviews } from '../components/ui/ProductReviews';   /* Related Campus Styles */
+import {
+  ArrowLeft, Heart, ShieldCheck, Truck, RefreshCw, Star,
+  Check, ChevronRight, Share2
 } from 'lucide-react';
 
 export const ProductDetailPage = ({ slug }) => {
@@ -65,7 +66,7 @@ export const ProductDetailPage = ({ slug }) => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14 space-y-16">
-      
+
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#666666]">
         <a href="/" onClick={(event) => { event.preventDefault(); navigate('/'); }} className="hover:text-[#111111] transition-colors">
@@ -81,7 +82,7 @@ export const ProductDetailPage = ({ slug }) => {
 
       {/* Main Product Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-        
+
         {/* Left: Gallery Column */}
         <div className="lg:col-span-7 space-y-4">
           <div className="aspect-4/5 bg-[#F4EFEA] border border-[#E8E2D8] overflow-hidden relative">
@@ -110,11 +111,10 @@ export const ProductDetailPage = ({ slug }) => {
                   onClick={() => setSelectedImage(img)}
                   aria-label={`Show product image ${idx + 1} of ${product.name}`}
                   aria-pressed={selectedImage === img}
-                  className={`w-20 h-24 bg-[#EFECE5] border overflow-hidden cursor-pointer transition-all ${
-                    selectedImage === img
+                  className={`w-20 h-24 bg-[#EFECE5] border overflow-hidden cursor-pointer transition-all ${selectedImage === img
                       ? 'border-[#111111] ring-1 ring-[#111111]'
                       : 'border-[#E8E2D8] opacity-75 hover:opacity-100'
-                  }`}
+                    }`}
                 >
                   <img width="896" height="1200" src={img} alt={`${product.name} footwear view ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </button>
@@ -181,11 +181,10 @@ export const ProductDetailPage = ({ slug }) => {
                   <button
                     key={i}
                     onClick={() => setSelectedColor(c.name)}
-                    className={`px-3.5 py-2 text-xs border transition-all cursor-pointer ${
-                      selectedColor === c.name
+                    className={`px-3.5 py-2 text-xs border transition-all cursor-pointer ${selectedColor === c.name
                         ? 'border-[#111111] bg-[#111111] text-[#F7F5F0]'
                         : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
-                    }`}
+                      }`}
                   >
                     {c.name}
                   </button>
@@ -210,11 +209,10 @@ export const ProductDetailPage = ({ slug }) => {
                 <button
                   key={s}
                   onClick={() => setSelectedSize(s)}
-                  className={`py-3 text-xs font-mono transition-all border cursor-pointer ${
-                    selectedSize === s
+                  className={`py-3 text-xs font-mono transition-all border cursor-pointer ${selectedSize === s
                       ? 'border-[#111111] bg-[#111111] text-[#F7F5F0] font-bold'
                       : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
-                  }`}
+                    }`}
                 >
                   {s}
                 </button>
@@ -234,11 +232,10 @@ export const ProductDetailPage = ({ slug }) => {
 
               <button
                 onClick={() => toggleWishlist(product)}
-                className={`px-4 border transition-colors cursor-pointer flex items-center justify-center ${
-                  inWishlist
+                className={`px-4 border transition-colors cursor-pointer flex items-center justify-center ${inWishlist
                     ? 'border-[#A52A2A] text-[#A52A2A] bg-white'
                     : 'border-[#E8E2D8] bg-white text-[#111111] hover:border-[#111111]'
-                }`}
+                  }`}
                 aria-label="Toggle wishlist"
               >
                 <Heart className={`w-5 h-5 ${inWishlist ? 'fill-[#A52A2A]' : ''}`} />
@@ -274,31 +271,28 @@ export const ProductDetailPage = ({ slug }) => {
             <div className="flex border-b border-[#E8E2D8]">
               <button
                 onClick={() => setActiveTab('comfort')}
-                className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer mr-6 ${
-                  activeTab === 'comfort'
+                className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer mr-6 ${activeTab === 'comfort'
                     ? 'text-[#111111] border-b-2 border-[#A52A2A]'
                     : 'text-[#888888] hover:text-[#111111]'
-                }`}
+                  }`}
               >
                 Comfort Tech
               </button>
               <button
                 onClick={() => setActiveTab('materials')}
-                className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer mr-6 ${
-                  activeTab === 'materials'
+                className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer mr-6 ${activeTab === 'materials'
                     ? 'text-[#111111] border-b-2 border-[#A52A2A]'
                     : 'text-[#888888] hover:text-[#111111]'
-                }`}
+                  }`}
               >
                 Materials
               </button>
               <button
                 onClick={() => setActiveTab('styling')}
-                className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer ${
-                  activeTab === 'styling'
+                className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer ${activeTab === 'styling'
                     ? 'text-[#111111] border-b-2 border-[#A52A2A]'
                     : 'text-[#888888] hover:text-[#111111]'
-                }`}
+                  }`}
               >
                 Campus Styling
               </button>
@@ -314,9 +308,11 @@ export const ProductDetailPage = ({ slug }) => {
         </div>
       </div>
 
+      <ProductReviews key={product.id} product={product} />
       {/* Related Campus Styles */}
       <section className="pt-12 border-t border-[#E8E2D8] space-y-8">
         <div className="flex items-center justify-between">
+          
           <h2 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-[#111111] uppercase">
             Complete Your Campus Rotation
           </h2>
