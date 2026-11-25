@@ -71,7 +71,7 @@
     transform: translateY(0);
   }
 }
-
+/* 
 .animate-hero-fade-up {
   animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -84,6 +84,14 @@
 .animate-hero-cta {
   animation: heroCtaFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
   opacity: 0;
+} */
+
+.animate-hero-fade-up,
+.animate-hero-scale,
+.animate-hero-cta {
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
 
 /* Clean, non-distracting scrollbar */

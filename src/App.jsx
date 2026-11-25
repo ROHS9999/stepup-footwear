@@ -11,7 +11,8 @@ import { QuickViewModal } from './components/ui/QuickViewModal';
 import { Toast } from './components/ui/Toast';
 import { applySeo, buildSchemas, trackPageView } from './utils/seo';
 
-const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
+// const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
+import { HomePage } from './pages/HomePage';
 const ShopPage = lazy(() => import('./pages/ShopPage').then((module) => ({ default: module.ShopPage })));
 const MenPage = lazy(() => import('./pages/MenPage').then((module) => ({ default: module.MenPage })));
 const WomenPage = lazy(() => import('./pages/WomenPage').then((module) => ({ default: module.WomenPage })));
