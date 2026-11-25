@@ -39,6 +39,8 @@ export const ProductCard = ({ product }) => {
         >
           <img decoding="async" width="896" height="1200"
             src={product.image}
+            srcSet={`${product.image.replace('.webp', '-sm.webp')} 480w, ${product.image} 896w`}
+            sizes="(min-width: 1024px) 25vw, 50vw"
             alt={`${product.name} footwear`}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
             loading="lazy"
@@ -48,11 +50,10 @@ export const ProductCard = ({ product }) => {
         {/* Category / Badge Tag */}
         <div className="absolute top-2.5 left-2.5 z-10 pointer-events-none flex flex-col gap-1 items-start">
           {product.badge && (
-            <span className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 ${
-              product.badge === 'Trending' || product.badge === 'Student Fave'
+            <span className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 ${product.badge === 'Trending' || product.badge === 'Student Fave'
                 ? 'bg-[#A52A2A] text-[#F7F5F0]'
                 : 'bg-[#111111] text-[#F7F5F0]'
-            }`}>
+              }`}>
               {product.badge}
             </span>
           )}
@@ -65,11 +66,10 @@ export const ProductCard = ({ product }) => {
         <button
           type="button"
           onClick={() => toggleWishlist(product)}
-          className={`absolute top-2.5 right-2.5 z-20 p-2 rounded-full transition-all duration-200 cursor-pointer ${
-            inWishlist
+          className={`absolute top-2.5 right-2.5 z-20 p-2 rounded-full transition-all duration-200 cursor-pointer ${inWishlist
               ? 'bg-white text-[#A52A2A] shadow-xs'
               : 'bg-white/85 backdrop-blur-xs text-[#111111] hover:bg-white hover:text-[#A52A2A] shadow-2xs'
-          }`}
+            }`}
           aria-label={inWishlist ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
         >
           <Heart className={`w-3.5 h-3.5 stroke-[1.8] ${inWishlist ? 'fill-[#A52A2A]' : ''}`} />
