@@ -43,7 +43,9 @@ export const BLOG_ARTICLES = [
 <p>For mornings when the alarm didn't ring and you have 6 minutes to reach the lecture hall. Flexible washed canvas and stretch side gussets allow you to slip in without touching laces while keeping feet comfortably cushioned all day.</p>
 
 <h2 id="buying-advice">Smart Buying Checklist for College Students</h2>
-<p>When picking footwear for university life, prioritize three criteria: <strong>midsole cushioning</strong>, <strong>wipe-clean upper materials</strong>, and <strong>neutral colorways</strong> (ivory, chalk, taupe, black). By focusing on these essentials, your rotation stays fresh all semester long.</p>
+<p>When picking footwear for university life, consider how each pair fits, the activities you plan to use it for, and the support it provides. The <a href="https://www.apma.org/patients-and-the-public/tips-for-healthy-feet/choosing-shoes-for-sports/" target="_blank" rel="noopener noreferrer" class="underline font-semibold">APMA footwear selection guide</a> explains the importance of activity-specific footwear, support and shock absorption. Also consider <strong>midsole cushioning</strong>, <strong>wipe-clean upper materials</strong>, and <strong>neutral colourways</strong> when building a versatile campus rotation.</p>
+
+<p>When searching online for college footwear, clear product information helps students compare their options. Services such as <a href="https://seonalabs.com" target="_blank" rel="noopener noreferrer" class="underline font-semibold">SEOnaLabs digital search services</a> help businesses improve their online visibility.</p>
 `
   },
   {
