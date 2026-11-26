@@ -53,17 +53,16 @@ const productSchema = (origin, product) => ({
   description: product.description || product.descriptor,
   sku: product.id,
   image: [`${origin}${product.image}`],
-  brand: { '@type': 'Brand', name: product.brand || BRAND },
+  brand: {
+    '@type': 'Brand',
+    name: product.brand || BRAND,
+  },
   category: product.category,
-  ...(product.rating && product.reviewsCount
-    ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: product.rating, reviewCount: product.reviewsCount } }
-    : {}),
   offers: {
     '@type': 'Offer',
     url: `${origin}/product/${product.slug}`,
     priceCurrency: 'INR',
-    price: product.price,
-    availability: 'https://schema.org/InStock',
+    price: Number(product.price).toFixed(2),
     itemCondition: 'https://schema.org/NewCondition',
   },
 });
@@ -77,12 +76,12 @@ const articleSchema = (origin, article) => ({
   // datePublished: toIsoDate(article.date),
   // dateModified: toIsoDate(article.date),
   ...(article.datePublished
-  ? { datePublished: article.datePublished }
-  : {}),
+    ? { datePublished: article.datePublished }
+    : {}),
 
-...(article.dateModified
-  ? { dateModified: article.dateModified }
-  : {}),
+  ...(article.dateModified
+    ? { dateModified: article.dateModified }
+    : {}),
   keywords: [article.targetKeyword, ...(article.tags || [])].filter(Boolean).join(', '),
   author: { '@type': 'Person', name: article.author },
   publisher: { '@type': 'Organization', name: 'STEPUP STUDIO', logo: { '@type': 'ImageObject', url: `${origin}/favicon.svg` } },
@@ -114,7 +113,7 @@ export const buildSchemas = ({ origin, pathname, product, article, allProducts }
   } else if (LISTING_NAMES[pathname]) {
     const list = pathname === '/men' ? allProducts.filter((p) => p.gender === 'men')
       : pathname === '/women' ? allProducts.filter((p) => p.gender === 'women')
-      : allProducts;
+        : allProducts;
     schemas.push(itemList(origin, LISTING_NAMES[pathname], list));
     schemas.push(breadcrumb(origin, [home, { name: LISTING_NAMES[pathname], path: pathname }]));
   } else if (pathname === '/journal' || pathname === '/blog') {
