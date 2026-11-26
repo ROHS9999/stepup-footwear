@@ -106,6 +106,11 @@ export const ProductDetailPage = ({ slug }) => {
             )}
           </div>
 
+          <p className="text-[11px] text-[#666666]">
+            Additional gallery views are AI-generated illustrations
+            and may differ from the actual product.
+          </p>
+
           {/* Thumbnails */}
           {product.gallery && product.gallery.length > 1 && (
             <div className="flex gap-3">
