@@ -18,10 +18,10 @@ const toAbsoluteShareImage = (origin, image) => {
   return path.startsWith('http') ? path : `${origin}${path}`;
 };
 
-const toIsoDate = (value) => {
-  const parsed = new Date(`1 ${value}`);
-  return Number.isNaN(parsed.getTime()) ? '2026-10-01' : parsed.toISOString().slice(0, 10);
-};
+// const toIsoDate = (value) => {
+//   const parsed = new Date(`1 ${value}`);
+//   return Number.isNaN(parsed.getTime()) ? '2026-10-01' : parsed.toISOString().slice(0, 10);
+// };
 
 const breadcrumb = (origin, items) => ({
   '@context': 'https://schema.org',
@@ -74,8 +74,15 @@ const articleSchema = (origin, article) => ({
   headline: article.title,
   description: article.excerpt,
   image: [`${origin}${(article.image || '').replace(/\.webp$/, '.jpg')}`],
-  datePublished: toIsoDate(article.date),
-  dateModified: toIsoDate(article.date),
+  // datePublished: toIsoDate(article.date),
+  // dateModified: toIsoDate(article.date),
+  ...(article.datePublished
+  ? { datePublished: article.datePublished }
+  : {}),
+
+...(article.dateModified
+  ? { dateModified: article.dateModified }
+  : {}),
   keywords: [article.targetKeyword, ...(article.tags || [])].filter(Boolean).join(', '),
   author: { '@type': 'Person', name: article.author },
   publisher: { '@type': 'Organization', name: 'STEPUP STUDIO', logo: { '@type': 'ImageObject', url: `${origin}/favicon.svg` } },
